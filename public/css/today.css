@@ -1,0 +1,40 @@
+.container{
+	padding-top: 15px;
+}
+.vert{
+    height:100% // или сколько нужно в пикселях или процентах
+    width: 1px;
+    border:none;
+    border-left: 3px solid #18bc9c;
+    margin-top: 20px;
+}
+.col-md-2 h3{
+	color: #0f7864;
+}
+.image{
+	width: 300px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	float: left;
+	border-color: #0f7864;
+}
+img {
+	width: 100%;
+}
+.form-group h3{
+	display: inline-block;
+}
+.day-name{
+	display: inline-block;
+	width: 70%;
+	font-size: 20px;
+	margin-left: 15px
+}
+.choose-how{
+	margin-left: 15px;
+	padding: 5px;
+	background-color: white;
+	border-radius: 4px;
+	border: 1px solid #18bc9c;
+}
+

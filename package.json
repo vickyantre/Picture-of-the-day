@@ -1,0 +1,20 @@
+{
+  "name": "Picture-of-the-day",
+  "version": "1.0.0",
+  "description": "progect for study",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vickyantre/Picture-of-the-day.git"
+  },
+  "keywords": [],
+  "author": "Victoria Antre",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vickyantre/Picture-of-the-day/issues"
+  },
+  "homepage": "https://github.com/vickyantre/Picture-of-the-day#readme"
+}
