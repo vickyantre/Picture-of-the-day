@@ -222,3 +222,33 @@
 	  height: 230px;
 	  }
 }
+.cal1 .clndr .clndr-controls{
+  background-color: #18d0ab;
+  border-top-right-radius: 7px;
+  border-top-left-radius: 7px
+}
+.cal1{
+  border-radius: 7px;
+  border: 1px solid #18d0ab;
+  padding-bottom: 7px;
+}
+.cal1 .clndr .clndr-table .header-days .header-day{
+  background-color: #1cdbb5;
+  color: white;
+}
+.cal1 .clndr .clndr-controls .month , .year{
+  background-color: #18d0ab;
+  border:#18d0ab;
+  width: 150px;
+  height: 50px;
+  color: white;
+  text-align: right;
+  font-size: 25px;
+}
+
+.cal1 .clndr .clndr-controls .clndr-control-button .clndr-next-button, .cal1 .clndr .clndr-controls .clndr-control-button .clndr-previous-button {
+  background: none;
+  text-indent: 0;
+  color: white;
+  font-size: 30px;
+}

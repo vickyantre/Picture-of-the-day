@@ -7,10 +7,10 @@
   <title>Today</title>
   <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="./css/today.css">
+  <link rel="stylesheet" type="text/css" href="./css/list.css">
 </head>
 <body>
    <div class="container">
-
       <nav class="navbar navbar-inverse">
           <div class="container-fluid">
             <div class="navbar-header">
@@ -26,17 +26,18 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#today">Today</a></li>
                         <li><a href="#calendar">Calendar</a></li>
-                        <li><a href="#contacts">Contacts</a></li>
+                        <li><a href="#statistics">Statistics</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                       <li><a href="#singIn"><b>Sing in</b></a></li>
                     </ul>
+              </div>
             </div>
-          </div>
-        </nav>
+          </nav>
 
       <div class="row">
-        <div class="col-md-2">
+
+        <div class="col-md-2  desktop-only">
             <h3 class="text-left">Best days:</h3>
             <div class="panel panel-success">
               <div class="panel-heading">
@@ -55,55 +56,77 @@
               </div>
             </div>
         </div>
+
         <div class="col-md-10 vert">
+
             <div>
               <div class="form-group has-success">
                 <h3>14.04.2017</h3>
                 <input type="text" class="form-control day-name" id="inputSuccess" placeholder="What was the main in this day?">
               </div>
-              <div>
-                
-              <form>
-                <div class="form-group has-success">
-                  <label for="sel1">How was your day?</label>
-                  <select class="choose-how" id="sel1">
-                    <option>The best day</option>
-                    <option>Great day</option>
-                    <option>Normal day</option>
-                    <option>Awful day</option>
-                  </select>
+
+              <div> 
+                <form>
+                  <div class="form-group has-success">
+                    <label for="sel1">How was your day?</label>
+                    <select class="choose-how" id="sel1">
+                      <option>The best day</option>
+                      <option>Great day</option>
+                      <option>Normal day</option>
+                      <option>Awful day</option>
+                    </select>
+                  </div>
+                </form>
+              </div>
+
+
+          <div class="row">
+                <div class="image img-thumbnail">
+                  <img  src="./photos/p0aBJFZ0GJs.jpg">
                 </div>
-              </form>
-            <div class="image img-thumbnail">
-              <img  src="./photos/p0aBJFZ0GJs.jpg">
-            </div>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </div>
+                <div class="list-to-remember for-mobile">
+                    <h4>Things happened today I want to remember</h4>
+                    <div class="row2 down-line">
+                        <button id="markAllCompleted" class="mark-all btn">✔</button>
+                        <input type="text" id="todoText" placeholder="I done ..."/>
+                    </div> 
+                      <div>
+                            <ul id="todoList" class="list-group"></ul>
+                      </div>
+
+                            
+                    <div id="hollow"  style="display: none;">
+                        <li class="list-group-item"><input class="checkbox-round" type="checkbox"> <span>Todo text</span> <button class="btn btn-xs pull-right">x</button></li>
+                    </div>
+                </div>
+          </div>
+          <div class="plans">
+            <div class="list-to-remember for-mobile">
+                    <h4>My plans for day</h4>
+                    <div class="row2 down-line">
+                        <button id="markAllCompleted" class="mark-all btn">✔</button>
+                        <input type="text" id="todoText" placeholder="Add plan"/>
+                    </div> 
+                      <div>
+                            <ul id="todoList" class="list-group"></ul>
+                      </div>
+
+                            
+                    <div id="hollow"  style="display: none;">
+                        <li class="list-group-item"><input class="checkbox-round" type="checkbox"> <span>Todo text</span> <button class="btn btn-xs pull-right">x</button></li>
+                    </div>
+                </div>
+          </div>
       </div>
-
-
-        
-
-
-
-    </div>
+      </div>
+      </div>
+      <div class="footer">
+            <p>2017. Created by Victoria Yakovenko. E-mail: vicky-antre@gmail.com</p>
+      </div>
+</div>
     <script type="text/javascript" src="./js/jquery-3.2.0.min.js"></script>
-<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/list.js"></script>
+
 </body>
 </html>

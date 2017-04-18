@@ -5,6 +5,7 @@
     <title>Calendar</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="./css/clndr.css">
 </head>
 <body>
@@ -23,9 +24,9 @@
             </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#today">Today</a></li>
-                        <li><a href="#calendar">Calendar</a></li>
-                        <li><a href="#contacts">Contacts</a></li>
+                        <li><a href="#today">Today</a></li>
+                        <li><a  class="active" href="#calendar">Calendar</a></li>
+                        <li><a href="#statistics">Statistics</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                       <li><a href="#singIn"><b>Sing in</b></a></li>
@@ -41,7 +42,7 @@
 
 <div class='clndr-controls'>
     <div class='clndr-control-button'>
-    	<p class='clndr-previous-button'>previous</p>
+    	<p class='clndr-previous-button'><i class="fa fa-chevron-left" aria-hidden="true"></i></p>
     </div>
     <span>
     	<select class="month">
@@ -60,7 +61,7 @@
     	</select>
     </span>
     
-    <div class='clndr-control-button rightalign'><p class='clndr-next-button'>next</p></div>
+    <div class='clndr-control-button rightalign'><p class='clndr-next-button'><i class="fa fa-chevron-right" aria-hidden="true"></i></p></div>
     </div>
   		<table class='clndr-table' border='0' cellspacing='0' cellpadding='0'>
     <thead>
@@ -81,7 +82,7 @@
       </tr>
     <% } %>
     </tbody>
-  </table>"
+  </table>
 </script>
 
 

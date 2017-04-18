@@ -1,0 +1,115 @@
+ul{
+	list-style: none;
+
+}
+ul li.todo-done span{
+	color: grey;
+	text-decoration: line-through;
+}
+
+.checkbox-round 
+/*input[type='checkbox']:before*/{
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    position: relative;
+    top: 3px;
+    border: 1px solid #ddd;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+    content: " ";
+ }
+ .row2 input{
+ 	border: none;
+ 	padding: 6px;
+ 	font-size: 18px;
+ }
+
+ input[type='checkbox']:before {
+    content: "✓";
+    position: relative;
+    left: 3px;
+    opacity: 0;
+}
+/*
+.checkbox-round:checked*/
+
+input[type='checkbox']:checked:before {
+    content: "✓";
+    position: relative;
+    left: 3px;
+    color: green;
+    opacity: 1;
+}
+div span{
+	margin-left: 15px;
+}
+
+.list-name{
+	padding: 20px;
+	font-size: 15px;
+	border: none;
+	border-radius: 0;
+}
+.mark-all{
+	border: none;
+	border-radius: 0;
+	background: none;
+}
+.row2{ 
+	padding: 10px 0 10px 0px; 
+	border: none;
+}
+.row2 div{
+	display: inline-block;
+}
+.row2 div input{
+	width: 90%;
+	font-size: 15px;
+	border: none;
+}
+
+.down-line{
+	border-bottom: 1px solid lightgrey;
+}
+
+.row4{
+	padding-top: -5px;
+	padding-bottom: 50px;
+	margin: 0;
+}
+
+#todoList li button{
+	border:none;
+	color: white;
+	background: none;
+	font-weight: bold;
+	font-size: 15px;
+}
+#todoList li:hover button{
+	color: #cc9a9a;
+}
+
+#todoList li button:hover{
+	background: transparent;
+	color: #c25353;
+}
+
+.mark-all-selected{
+	color: lightgrey;
+}
+input[type="checkbox"]:focus, input:focus, textarea:focus, select:focus {
+    outline: 0;
+    outline-offset: 0;
+}
+.list-group-item {
+	box-sizing: none;
+	border: none;
+}
+.plans{
+	display: block;
+}
+
+
