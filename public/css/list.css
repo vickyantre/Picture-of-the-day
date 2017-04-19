@@ -1,10 +1,10 @@
-ul{
-	list-style: none;
 
-}
 ul li.todo-done span{
 	color: grey;
 	text-decoration: line-through;
+}
+ul li span{
+	margin-left: 10px;
 }
 
 .checkbox-round 
@@ -26,6 +26,9 @@ ul li.todo-done span{
  	padding: 6px;
  	font-size: 18px;
  }
+ .list-group, .list-group-item{
+ 	border: none;
+ }
 
  input[type='checkbox']:before {
     content: "✓";
@@ -42,9 +45,6 @@ input[type='checkbox']:checked:before {
     left: 3px;
     color: green;
     opacity: 1;
-}
-div span{
-	margin-left: 15px;
 }
 
 .list-name{
@@ -81,32 +81,30 @@ div span{
 	margin: 0;
 }
 
-#todoList li button{
+li button{
 	border:none;
 	color: white;
 	background: none;
 	font-weight: bold;
 	font-size: 15px;
 }
-#todoList li:hover button{
+li:hover button{
 	color: #cc9a9a;
 }
 
-#todoList li button:hover{
+li button:hover{
 	background: transparent;
 	color: #c25353;
 }
 
-.mark-all-selected{
-	color: lightgrey;
-}
-input[type="checkbox"]:focus, input:focus, textarea:focus, select:focus {
+
+input[type="checkbox"]:focus, input:focus, textarea:focus, select:focus, .show-gallery:focus {
     outline: 0;
     outline-offset: 0;
 }
-.list-group-item {
-	box-sizing: none;
-	border: none;
+
+.list-to-remember ul{
+    list-style-type: circle;
 }
 .plans{
 	display: block;

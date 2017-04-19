@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Today</title>
   <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="./css/today.css">
   <link rel="stylesheet" type="text/css" href="./css/list.css">
 </head>
@@ -83,11 +84,13 @@
           <div class="row">
                 <div class="image img-thumbnail">
                   <img  src="./photos/p0aBJFZ0GJs.jpg">
+                    <input type="file" name="file" id="file" class="inputfile" />
+                    <label for="file">+</label>
+                    <button class="show-gallery" id="showGallery"><i class="fa fa-eye" aria-hidden="true"></i></button>
                 </div>
-                <div class="list-to-remember for-mobile">
+        <div class="list-to-remember for-mobile">
                     <h4>Things happened today I want to remember</h4>
                     <div class="row2 down-line">
-                        <button id="markAllCompleted" class="mark-all btn">✔</button>
                         <input type="text" id="todoText" placeholder="I done ..."/>
                     </div> 
                       <div>
@@ -96,24 +99,26 @@
 
                             
                     <div id="hollow"  style="display: none;">
-                        <li class="list-group-item"><input class="checkbox-round" type="checkbox"> <span>Todo text</span> <button class="btn btn-xs pull-right">x</button></li>
+                        <li class="list-group-item"><b>✔</b><span>Todo text</span> 
+                        <button class="btn pull-right">x</button>
+                        </li>
                     </div>
                 </div>
           </div>
           <div class="plans">
-            <div class="list-to-remember for-mobile">
+            <div class="list for-mobile">
                     <h4>My plans for day</h4>
                     <div class="row2 down-line">
-                        <button id="markAllCompleted" class="mark-all btn">✔</button>
-                        <input type="text" id="todoText" placeholder="Add plan"/>
+                        <b>✔</b>
+                        <input type="text" id="todoTextPlan" placeholder="Add plan"/>
                     </div> 
                       <div>
-                            <ul id="todoList" class="list-group"></ul>
+                            <ul id="todoListPlan" class="list-group"></ul>
                       </div>
 
                             
-                    <div id="hollow"  style="display: none;">
-                        <li class="list-group-item"><input class="checkbox-round" type="checkbox"> <span>Todo text</span> <button class="btn btn-xs pull-right">x</button></li>
+                    <div id="hollowPlan"  style="display: none;">
+                        <li class="list-group-item"><input class="checkbox-round" type="checkbox"> <span>Todo text</span> <button class="btn pull-right">x</button></li>
                     </div>
                 </div>
           </div>

@@ -6,7 +6,7 @@
     border-left: 3px solid #18bc9c;
     margin-top: 20px;
 }
-.col-md-2 h3, .list-to-remember h4{
+.col-md-2 h3, .list-to-remember h4, .list h4{
 	color: #0f7864;
 }
 .image{
@@ -20,6 +20,42 @@
 img {
 	width: 100%;
 }
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	
+}
+.inputfile + label {
+    font-size: 30px;
+    color: white;
+    background-color: #18bc9c;
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    padding: 1px 14px;
+    border-radius: 50%;
+	position: relative;
+	bottom: 55px;
+	left: 280px;
+}
+
+.show-gallery{
+	font-size: 25px;
+    color: white;
+    background-color: #18bc9c;
+    display: inline-block;
+    padding: -2px 0;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+	position: relative;
+	bottom: 110px;
+	left: 232px;
+	border: none;
+}
+
 .form-group h3{
 	display: inline-block;
 }
