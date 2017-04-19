@@ -22,15 +22,19 @@ function renderTodos(){
 
         todosList.innerHTML = "";
 
-        todos.forEach(function(todo){            
+        todos.forEach(function(todo, index){            
         var todoElementTemplate = document.querySelector("div#hollow li").cloneNode(true);
+        todoElementTemplate.setAttribute('todo-index', index);
         todoElementTemplate.querySelector("span").innerText = todo.text;
         todosList.appendChild(todoElementTemplate);
 
         todoElementTemplate.querySelector("button").onclick = function(e) {
             var li = e.path[1];
-            todosList.removeChild(li);
-        }
+            var todoIndex = li.getAttribute("todo-index");
+            todos.splice(todoIndex, 1);
+            updateLocalStorage();
+            renderTodos();
+        };
     });
 
         updateLocalStorage();
@@ -84,34 +88,45 @@ $("#todoTextPlan").keypress(function(e){
 function renderTodosP(){    
         todosListP.innerHTML = "";
 
-        todosP.forEach(function(todo){            
-         var todoElementTemplateP = document.querySelector("div#hollowPlan li").cloneNode(true);
+        var activeTodos = todosP.filter(function (todo) {
+            return !todo.isDone;
+        });
+
+        var doneTodos = todosP.filter(function (todo) {
+            return todo.isDone;
+        });
+
+        var renderTodo = function(todo, index){            
+         var todoElementTemplateP = document.querySelector("div#hollowPlan li").cloneNode(true);         
+         todosListP.appendChild(todoElementTemplateP);
+         todoElementTemplateP.setAttribute('todo-index', index);
+
+         if (todo.isDone) {
+            todoElementTemplateP.classList.add('todo-done');
+            todoElementTemplateP.querySelector("input").checked = true;
+         }
 
 
         todoElementTemplateP.querySelector("input").onchange = function(e){
-            var li = e.path[1];
-
-            if(e.path[0].checked) {
-                li.classList.add("todo-done");
-                $(li).parent().append($(li));
-                todo.isDone = true;
-            } else {
-                li.classList.remove("todo-done");
-                $(li).parent().prepend($(li));
-                todo.isDone = false;
-            }
+            todo.isDone = e.path[0].checked;
             updateLocalStorageP();
+            renderTodosP();
         };
 
         todoElementTemplateP.querySelector("span").innerText = todo.text;
-        todosListP.appendChild(todoElementTemplateP);
 
         todoElementTemplateP.querySelector("button").onclick = function(e) {
             var li = e.path[1];
-            todosListP.removeChild(li);
-        }
+            var todoIndex = li.getAttribute("todo-index");
+            todosP.splice(todoIndex, 1);
+            updateLocalStorageP();
+            renderTodosP();
+        };
 
-    });
+    };
+
+        activeTodos.forEach(renderTodo); 
+        doneTodos.forEach(renderTodo);
 
         updateLocalStorageP();
 }
