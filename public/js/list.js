@@ -2,72 +2,44 @@ var inputText = document.querySelector("#todoText");
 var todoIndexValue = 0;
 var todosList = document.querySelector("#todoList");
 
-todos = [];
-
 $("#todoText").keypress(function(e){
     if (e.keyCode == 13) {
         todoIndexValue++;
-        todos.push({
-            text: inputText.value,
-            isDone: false,
-            index: todoIndexValue
+        TodoRepository.push({
+            text: inputText.value
+        }, function (todoCreatedOnTheServer) {          
+            renderTodos();
         });
         inputText.value = "";
-        renderTodos();
-        updateLocalStorage();
     }
 });
 
-function renderTodos(){
+function renderTodos() {
+        TodoRepository.findAll(function (todos) {
+            todosList.innerHTML = "";
 
-        todosList.innerHTML = "";
+            todos.forEach(function(todo, index){            
+            var todoElementTemplate = document.querySelector("div#hollow li").cloneNode(true);
+            todoElementTemplate.setAttribute('todo-index', index);
+            todoElementTemplate.querySelector("span").innerText = todo.text;
+            todosList.appendChild(todoElementTemplate);
 
-        todos.forEach(function(todo, index){            
-        var todoElementTemplate = document.querySelector("div#hollow li").cloneNode(true);
-        todoElementTemplate.setAttribute('todo-index', index);
-        todoElementTemplate.querySelector("span").innerText = todo.text;
-        todosList.appendChild(todoElementTemplate);
-
-        todoElementTemplate.querySelector(".todo-remove").onclick = function(e) {
-            todos.splice(index, 1);
-            updateLocalStorage();
-            renderTodos();
-        };
-        todoElementTemplate.querySelector(".edit").onclick = function(e) {
-            todos.splice(index, 1);
-            inputText.value = todo.text;
-            inputText.focus();
-            updateLocalStorage();
-            renderTodos();
-        };
+            todoElementTemplate.querySelector(".todo-remove").onclick = function(e) {
+                TodoRepository.remove(todo);
+                renderTodos();
+            };
+            todoElementTemplate.querySelector(".edit").onclick = function(e) {
+                TodoRepository.remove(todo);
+                inputText.value = todo.text;
+                inputText.focus();
+                renderTodos();
+            };
+        });
     });
-
-        updateLocalStorage();
 }
 
 
-function updateLocalStorage(){
-    localStorage.setItem("todos", JSON.stringify(todos));
-}
-
-
-function init(){
-    var localStorageTodos = localStorage.todos;
-    if (localStorageTodos != undefined){
-      todos = JSON.parse(localStorageTodos);  
-    }
-    renderTodos(); 
-}
-
-init();
-
-
-
-
-
-
-
-
+renderTodos();
 
 
 var inputTextP = document.querySelector("#todoTextPlan");
