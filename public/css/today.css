@@ -3,7 +3,6 @@
     height:100% // или сколько нужно в пикселях или процентах
     width: 1px;
     border:none;
-    border-left: 3px solid #18bc9c;
     margin-top: 20px;
 }
 .col-md-2 h3, .list-to-remember h4, .list h4{

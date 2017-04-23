@@ -1,10 +1,8 @@
 var inputText = document.querySelector("#todoText");
-var todoIndexValue = 0;
 var todosList = document.querySelector("#todoList");
 
 $("#todoText").keypress(function(e){
     if (e.keyCode == 13) {
-        todoIndexValue++;
         TodoRepository.push({
             text: inputText.value
         }, function (todoCreatedOnTheServer) {          
@@ -43,26 +41,22 @@ renderTodos();
 
 
 var inputTextP = document.querySelector("#todoTextPlan");
-var todoIndexValueP = 0;
 var todosListP = document.querySelector("#todoListPlan");
-
-todosP = [];
 
 $("#todoTextPlan").keypress(function(e){
     if (e.keyCode == 13) {
-        todoIndexValueP++;
-        todosP.push({
+        TodoPlanRepository.push({
             text: inputTextP.value,
             isDone: false,
-            index: todoIndexValueP
+        }, function (todoCreatedOnTheServer) {          
+            renderTodosP();
         });
         inputTextP.value = "";
-        renderTodosP();
-        updateLocalStorageP();
     }
 });
 
-function renderTodosP(){    
+function renderTodosP(){ 
+    TodoPlanRepository.findAll(function (todosP) {
         todosListP.innerHTML = "";
 
         var activeTodos = todosP.filter(function (todo) {
@@ -73,10 +67,9 @@ function renderTodosP(){
             return todo.isDone;
         });
 
-        var renderTodo = function(todo, index){            
+        var renderTodo = function(todo){            
          var todoElementTemplateP = document.querySelector("div#hollowPlan li").cloneNode(true);         
          todosListP.appendChild(todoElementTemplateP);
-         todoElementTemplateP.setAttribute('todo-index', index);
 
          if (todo.isDone) {
             todoElementTemplateP.classList.add('todo-done');
@@ -86,23 +79,22 @@ function renderTodosP(){
 
         todoElementTemplateP.querySelector("input").onchange = function(e){
             todo.isDone = e.path[0].checked;
-            updateLocalStorageP();
-            renderTodosP();
+            TodoPlanRepository.update(todo, {isDone: todo.isDone}, function () {            
+                renderTodosP();                
+            });
         };
 
         todoElementTemplateP.querySelector("[data-text]").innerText = todo.text;
 
         todoElementTemplateP.querySelector(".todo-remove").onclick = function(e) {
-            todosP.splice(index, 1);
-            updateLocalStorageP();
+            TodoPlanRepository.remove(todo);
             renderTodosP();
         };
 
         todoElementTemplateP.querySelector(".edit").onclick = function(e) {
-            todosP.splice(index, 1);
+            TodoPlanRepository.remove(todo);
             inputTextP.value = todo.text;
             inputTextP.focus();
-            updateLocalStorageP();
             renderTodosP();
         };
 
@@ -111,21 +103,8 @@ function renderTodosP(){
         activeTodos.forEach(renderTodo); 
         doneTodos.forEach(renderTodo);
 
-        updateLocalStorageP();
+});
 }
 
 
-function updateLocalStorageP(){
-    localStorage.setItem("todosP", JSON.stringify(todosP));
-}
-
-
-function initP(){
-    var localStorageTodosP = localStorage.todosP;
-    if (localStorageTodosP != undefined){
-      todosP = JSON.parse(localStorageTodosP);  
-    }
-    renderTodosP(); 
-}
-
-initP();
+renderTodosP();
