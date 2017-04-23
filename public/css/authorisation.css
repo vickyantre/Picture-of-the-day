@@ -59,3 +59,9 @@
         height: 100%;
     }}
 
+#forgotPassword h4{
+  font-weight: bold;
+    color: #0f7864;
+    margin: 17px;
+}
+

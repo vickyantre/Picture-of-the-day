@@ -19,9 +19,11 @@
   </div>
   <div class="modal-body">
     <ul class="nav nav-tabs" id="login-or-register">
-      <li ><a href="#register" data-toggle="tab">Registration</a></li>
       <li class="active"><a href="#profile" data-toggle="tab">Sing in</a></li>
+      <li ><a href="#register" data-toggle="tab">Registration</a></li>
+      <li ><a href="#forgotPassword" data-toggle="tab">Forgot Password</a></li>
     </ul>
+
     <div class="tab-content">
       <div class="tab-pane" id="register">
             <form action="#">
@@ -31,14 +33,26 @@
                 </div>
                 <div class="row">
                     <label class="col-md-4" for="password">Enter your password:</label>
-					<input class="col-md-8" type="password" name="password" placeholder="Password"><br/>
+          <input class="col-md-8" type="password" name="password" placeholder="Password"><br/>
                 </div>
                 <div class="row">
                     <label class="col-md-4" for="password_repeat">Repeat your password:</label>
-		   			<input class="col-md-8" type="password" name="password" placeholder="Password"><br/>
+            <input class="col-md-8" type="password" name="password" placeholder="Password"><br/>
                 </div>
                 <div class="row">
                     <input type="submit" id="register_button" class="register_button" value="Registration" />
+                </div>
+            </form>
+      </div>
+      <div class="tab-pane" id="forgotPassword">
+            <form action="#">
+                <h4 for="password">To send letter with password to your e -mail press button</h4>
+                <div class="row">
+                    <label class="col-md-4" for="password">Enter your e-mail:</label>
+					<input class="col-md-8" type="text" name="e-mail" placeholder="E-mail"><br/>
+                </div>
+                <div class="row">
+                    <input type="submit" id="register_button" class="register_button" value="Send" />
                 </div>
             </form>
       </div>
