@@ -28,10 +28,15 @@ function renderTodos(){
         todoElementTemplate.querySelector("span").innerText = todo.text;
         todosList.appendChild(todoElementTemplate);
 
-        todoElementTemplate.querySelector("button").onclick = function(e) {
-            var li = e.path[1];
-            var todoIndex = li.getAttribute("todo-index");
-            todos.splice(todoIndex, 1);
+        todoElementTemplate.querySelector(".todo-remove").onclick = function(e) {
+            todos.splice(index, 1);
+            updateLocalStorage();
+            renderTodos();
+        };
+        todoElementTemplate.querySelector(".edit").onclick = function(e) {
+            todos.splice(index, 1);
+            inputText.value = todo.text;
+            inputText.focus();
             updateLocalStorage();
             renderTodos();
         };
@@ -113,12 +118,18 @@ function renderTodosP(){
             renderTodosP();
         };
 
-        todoElementTemplateP.querySelector("span").innerText = todo.text;
+        todoElementTemplateP.querySelector("[data-text]").innerText = todo.text;
 
-        todoElementTemplateP.querySelector("button").onclick = function(e) {
-            var li = e.path[1];
-            var todoIndex = li.getAttribute("todo-index");
-            todosP.splice(todoIndex, 1);
+        todoElementTemplateP.querySelector(".todo-remove").onclick = function(e) {
+            todosP.splice(index, 1);
+            updateLocalStorageP();
+            renderTodosP();
+        };
+
+        todoElementTemplateP.querySelector(".edit").onclick = function(e) {
+            todosP.splice(index, 1);
+            inputTextP.value = todo.text;
+            inputTextP.focus();
             updateLocalStorageP();
             renderTodosP();
         };

@@ -26,9 +26,6 @@ ul li span{
  	padding: 6px;
  	font-size: 18px;
  }
- .list-group, .list-group-item{
- 	border: none;
- }
 
  input[type='checkbox']:before {
     content: "✓";
@@ -53,33 +50,12 @@ input[type='checkbox']:checked:before {
 	border: none;
 	border-radius: 0;
 }
-.mark-all{
-	border: none;
-	border-radius: 0;
-	background: none;
-}
-.row2{ 
-	padding: 10px 0 10px 0px; 
-	border: none;
-}
-.row2 div{
-	display: inline-block;
-}
-.row2 div input{
-	width: 90%;
-	font-size: 15px;
-	border: none;
-}
 
 .down-line{
 	border-bottom: 1px solid lightgrey;
+	margin-bottom: 20px;
 }
 
-.row4{
-	padding-top: -5px;
-	padding-bottom: 50px;
-	margin: 0;
-}
 
 li button{
 	border:none;
@@ -87,27 +63,38 @@ li button{
 	background: none;
 	font-weight: bold;
 	font-size: 15px;
+	padding: 0 !important;
 }
 li:hover button{
 	color: #cc9a9a;
 }
 
 li button:hover{
-	background: transparent;
 	color: #c25353;
+}
+.edit{
+    margin-right: 12px;
+}
+li:hover .edit{
+    color: grey;
+}
+li .edit:hover{
+    color: black;
 }
 
 
-input[type="checkbox"]:focus, input:focus, textarea:focus, select:focus, .show-gallery:focus {
+input[type="checkbox"]:focus, input:focus, textarea:focus, select:focus, .show-gallery:focus, li button:focus {
     outline: 0;
     outline-offset: 0;
 }
 
-.list-to-remember ul{
-    list-style-type: circle;
-}
 .plans{
 	display: block;
+}
+ul li{
+	display: block;
+	height: 40px;
+	font-size: 17px;
 }
 
 

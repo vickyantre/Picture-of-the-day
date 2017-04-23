@@ -99,6 +99,10 @@
 <script type="text/javascript">
 	$('#calendar').clndr({
 		template: $('#calendar-template').text(),
+    dayClasses: function (extraClasses) {
+      var classes = ['best-day', 'great-day', 'normal-day', 'auful-day'];
+      return extraClasses + " " + _.sample(classes);
+    },
 		doneRendering: function() {
 			var _this = this;
 			var $year = $(this.element).find('select.year');

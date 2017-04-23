@@ -88,19 +88,20 @@
                     <label for="file">+</label>
                     <button class="show-gallery" id="showGallery"><i class="fa fa-eye" aria-hidden="true"></i></button>
                 </div>
-        <div class="list-to-remember for-mobile">
+                <div class="list-to-remember for-mobile">
                     <h4>Things happened today I want to remember</h4>
                     <div class="row2 down-line">
                         <input type="text" id="todoText" placeholder="I done ..."/>
                     </div> 
                       <div>
-                            <ul id="todoList" class="list-group"></ul>
+                            <ul id="todoList" class=""></ul>
                       </div>
 
                             
                     <div id="hollow"  style="display: none;">
-                        <li class="list-group-item"><b>✔</b><span>Todo text</span> 
-                        <button class="btn pull-right">x</button>
+                        <li><b>✔</b><span>Todo text</span> 
+                        <button class="pull-right todo-remove"><i class="fa fa-times" aria-hidden="true"></i></button>
+                        <button class="pull-right edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                         </li>
                     </div>
                 </div>
@@ -113,12 +114,14 @@
                         <input type="text" id="todoTextPlan" placeholder="Add plan"/>
                     </div> 
                       <div>
-                            <ul id="todoListPlan" class="list-group"></ul>
+                            <ul id="todoListPlan"></ul>
                       </div>
 
                             
                     <div id="hollowPlan"  style="display: none;">
-                        <li class="list-group-item"><input class="checkbox-round" type="checkbox"> <span>Todo text</span> <button class="btn pull-right">x</button></li>
+                        <li><input class="checkbox-round" type="checkbox"> <span data-text>Todo text</span> <button class="pull-right todo-remove""><i class="fa fa-times" aria-hidden="true"></i></button>
+                        <button class="pull-right edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                        </li>
                     </div>
                 </div>
           </div>
