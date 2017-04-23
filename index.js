@@ -7,7 +7,11 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/pod');
 
-var TodoModel = mongoose.model('Todo', { text: String, isDone: Boolean });
+var TodoModel = mongoose.model('Todo', { 
+    text: String, 
+    day: Date,
+    isDone: Boolean 
+});
 var TodoModelPlan = mongoose.model('TodoPlan', { text: String, isDone: Boolean });
 
 // var kitty = new Cat({ name: 'Alisa' });

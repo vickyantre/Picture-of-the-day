@@ -1,10 +1,12 @@
 var inputText = document.querySelector("#todoText");
 var todosList = document.querySelector("#todoList");
+var today = new Date();
 
 $("#todoText").keypress(function(e){
     if (e.keyCode == 13) {
         TodoRepository.push({
-            text: inputText.value
+            text: inputText.value,
+            day: new Date() ,
         }, function (todoCreatedOnTheServer) {          
             renderTodos();
         });

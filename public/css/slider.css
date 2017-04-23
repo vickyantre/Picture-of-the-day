@@ -1,0 +1,43 @@
+.fa-chevron-left, .fa-chevron-right {
+	left: 50%;
+    margin-left: -10px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    display: inline-block;
+    margin-top: -10px;
+ }
+.carousel-inner .item img {
+	max-height: 760px;
+	display: inline-block;
+}
+.item{
+	text-align: center;
+}
+.modal-slider{
+	margin: 50px auto;
+}
+.delete-photo, .main-photo{
+	color: white;
+}
+.delete-photo{
+	position: relative;
+	left: 77%;
+	bottom: 55px;
+	font-size: 35px;
+}
+.main-photo{
+	position: relative;
+	left: 77%;
+	bottom: 145px;
+	font-size: 30px;
+}
+div a.main-photo:hover::after { 
+  content: "Set as main photo?"; 
+  font-size: 20px;
+  margin-left: 20px;
+}
+.main-photo:hover, .delete-photo:hover{
+	color: white;
+}
