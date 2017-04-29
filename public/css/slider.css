@@ -9,7 +9,8 @@
     margin-top: -10px;
  }
 .carousel-inner .item img {
-	max-height: 760px;
+	max-height: 640px;
+	width: auto;
 	display: inline-block;
 }
 .item{
@@ -19,18 +20,18 @@
 	margin: 50px auto;
 }
 .delete-photo, .main-photo{
-	color: white;
+	color: black;
 }
 .delete-photo{
-	position: relative;
-	left: 77%;
-	bottom: 55px;
+	position: absolute;
+	left: 81%;
+	bottom: 15px;
 	font-size: 35px;
 }
 .main-photo{
-	position: relative;
-	left: 77%;
-	bottom: 145px;
+	position: absolute;
+	left: 81%;
+	bottom: 65px;
 	font-size: 30px;
 }
 div a.main-photo:hover::after { 
@@ -39,5 +40,11 @@ div a.main-photo:hover::after {
   margin-left: 20px;
 }
 .main-photo:hover, .delete-photo:hover{
-	color: white;
+	color: black;
+}
+.close{
+	z-index: 1;
+	position: absolute;
+	top: 10px;
+	left: 97%;
 }
