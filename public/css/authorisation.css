@@ -1,16 +1,10 @@
-#myModal{
-     display: none;
-  }
-  .modal{
+
+  .modal-content{
     width: 50%;
-    height: 80%;
     margin: 50px auto;
     background: white;
-    border: 3px solid #18bc9c;
-    padding: 15px;
-    border-radius: 10px;
   }
-  h3{
+  .modal-header h3{
     color: #0f7864;
     font-weight: bold;
   }

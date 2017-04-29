@@ -19,6 +19,9 @@
 img {
 	width: 100%;
 }
+.panel .panel-heading .panel-title{
+	color: white;
+}
 .inputfile {
 	width: 0.1px;
 	height: 0.1px;
@@ -39,13 +42,15 @@ img {
 	bottom: 55px;
 	left: 280px;
 }
+.row2 input{
+	width: 100%;
+}
 
 .show-gallery{
 	font-size: 25px;
     color: white;
     background-color: #18bc9c;
     display: inline-block;
-    padding: -2px 0;
     width: 45px;
     height: 45px;
     border-radius: 50%;
@@ -53,6 +58,15 @@ img {
 	bottom: 110px;
 	left: 232px;
 	border: none;
+}
+a.show-gallery:hover, a.show-gallery:focus{
+	text-decoration: none;
+	color: white;
+}
+.show-gallery i{
+	position: relative;
+	top: 3px;
+	left: 8px;
 }
 
 .form-group h3{
@@ -91,7 +105,11 @@ select:not(:-internal-list-box){
 	font-weight: bold;
 	border-top: 2px solid #18bc9c;
 }
-
+.navbar-brand{
+	font-family: 'Parisienne', cursive;
+	font-size: 30px;
+	padding: 15px;
+}
 
 
 

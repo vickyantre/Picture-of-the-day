@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Today</title>
+  <link href="https://fonts.googleapis.com/css?family=Parisienne" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="./css/today.css">
@@ -21,7 +22,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="/">My picture of the day</a>
+              <a class="navbar-brand">MomentsOfToday</a>
             </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
@@ -30,7 +31,7 @@
                         <li><a href="#statistics">Statistics</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                      <li><a href="#singIn"><b>Sing in</b></a></li>
+                      <li><a><b>Sing out</b></a></li>
                     </ul>
               </div>
             </div>
@@ -56,6 +57,31 @@
                 Vilnius weekend
               </div>
             </div>
+            <div class="panel panel-success">
+              <div class="panel-heading">
+                <h3 class="panel-title">07.06.16</h3>
+              </div>
+              <div class="panel-body">
+                Wedding day
+              </div>
+            </div>
+            <div class="panel panel-success">
+              <div class="panel-heading">
+                <h3 class="panel-title">07.06.16</h3>
+              </div>
+              <div class="panel-body">
+                Wedding day
+              </div>
+            </div>
+            <div class="panel panel-success">
+              <div class="panel-heading">
+                <h3 class="panel-title">07.06.16</h3>
+              </div>
+              <div class="panel-body">
+                Wedding day
+              </div>
+            </div>
+            
         </div>
 
         <div class="col-md-10 vert">
@@ -86,7 +112,7 @@
                   <img  src="./photos/p0aBJFZ0GJs.jpg">
                     <input type="file" name="file" id="file" class="inputfile" />
                     <label for="file">+</label>
-                    <button class="show-gallery" id="showGallery"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                    <a class="show-gallery" href="/slider.html" data-toggle="modal" data-target="#modal-slider"><i class="fa fa-eye" aria-hidden="true"></i></a>
                 </div>
                 <div class="list-to-remember for-mobile">
                     <h4>Things happened today I want to remember</h4>
@@ -132,6 +158,10 @@
             <p>2017. Created by Victoria Yakovenko. E-mail: vicky-antre@gmail.com</p>
       </div>
 </div>
+ <div class="modal" id="modal-slider" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-content"></div>  
+</div>
+
     <script type="text/javascript" src="./js/jquery-3.2.0.min.js"></script>
     <script type="text/javascript" src="./js/bootstrap.min.js"></script>
     <script type="text/javascript" src="./js/moment-2.2.1.js"></script>
