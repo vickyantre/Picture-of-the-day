@@ -35,7 +35,10 @@ app.get('/about', function(req, res) {
 });
 
 app.get('/todo', function(req, res) {
-    TodoModel.find(function (err, todos) {
+    var day = new Date(req.query.day);
+  day.setHours(3, 0, 0, 0);
+
+    TodoModel.find({day: day}, function (err, todos) {
         if (err) return console.error(err);
         res.send(todos);
     });
@@ -49,10 +52,10 @@ app.post('/todo/remove', function(req, res) {
 });
 
 app.post('/todo/create', function(req, res) {
-  var now = new Date();
-  now.setHours(3, 0, 0, 0);
+  var day = new Date(req.body.day);
+  day.setHours(3, 0, 0, 0);
   var data = req.body;
-  data.day = now;
+  data.day = day;
 
     var newTodoModel = new TodoModel(data);
     newTodoModel.save(function (err) {
@@ -66,7 +69,10 @@ app.post('/todo/create', function(req, res) {
 });
 
 app.get('/todoPlan', function(req, res) {
-    TodoModelPlan.find(function (err, todosP) {
+  var day = new Date(req.query.day);
+  day.setHours(3, 0, 0, 0);
+
+    TodoModelPlan.find({day: day}, function (err, todosP) {
         if (err) return console.error(err);
         res.send(todosP);
     });
@@ -74,11 +80,11 @@ app.get('/todoPlan', function(req, res) {
 
 app.post('/todoPlan/create', function (req,res) {
 
-  var now = new Date();
-  now.setHours(3, 0, 0, 0);
+  var day = new Date(req.body.day);
+  day.setHours(3, 0, 0, 0);
 
   var data = req.body;
-  data.day = now;
+  data.day = day;
 
     var newTodoModelPlan = new TodoModelPlan(data);
     newTodoModelPlan.save(function (err) {
@@ -108,16 +114,16 @@ app.listen(3000, function() {
 });
 
 app.post('/dayName/update-date', function (req,res){
-  var now = new Date();
-  now.setHours(3, 0, 0, 0);
+  var day = new Date(req.body.day);
+  day.setHours(3, 0, 0, 0);
 
-  DayNameModel.findOne({ 'day': now }, function (err, record) {
+  DayNameModel.findOne({ 'day': day }, function (err, record) {
     if (record) {
       record.text = req.body.text; 
       record.attitude = req.body.attitude;    
     } else {
       record = new DayNameModel({
-        day: now,
+        day: day,
         text: req.body.text,
         attitude: req.body.attitude,
       });
@@ -129,7 +135,7 @@ app.post('/dayName/update-date', function (req,res){
 });
 
 app.get('/dayName/find-date', function (req,res){
-  var now = new Date();
+  var now = new Date(req.query.day);
   now.setHours(3, 0, 0, 0);
 
   DayNameModel.findOne({ 'day': now }, function (err, record) {

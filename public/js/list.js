@@ -6,7 +6,7 @@ $("#todoText").keypress(function(e){
     if (e.keyCode == 13) {
         TodoRepository.push({
             text: inputText.value,
-            day: new Date() ,
+            day: currentDate,
         }, function (todoCreatedOnTheServer) {          
             renderTodos();
         });
@@ -15,7 +15,7 @@ $("#todoText").keypress(function(e){
 });
 
 function renderTodos() {
-        TodoRepository.findAll(function (todos) {
+        TodoRepository.findAll(currentDate, function (todos) {
             todosList.innerHTML = "";
 
             todos.forEach(function(todo, index){            
@@ -50,6 +50,7 @@ $("#todoTextPlan").keypress(function(e){
         TodoPlanRepository.push({
             text: inputTextP.value,
             isDone: false,
+            day: currentDate,
         }, function (todoCreatedOnTheServer) {          
             renderTodosP();
         });
@@ -58,7 +59,7 @@ $("#todoTextPlan").keypress(function(e){
 });
 
 function renderTodosP(){ 
-    TodoPlanRepository.findAll(function (todosP) {
+    TodoPlanRepository.findAll(currentDate, function (todosP) {
         todosListP.innerHTML = "";
 
         var activeTodos = todosP.filter(function (todo) {

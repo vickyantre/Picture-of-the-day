@@ -7,8 +7,8 @@ var TodoRepository = {
 	remove: function (todo) {
 		$.post('/todo/remove?id=' + todo._id);
 	},
-	findAll: function (callback) {
-		$.get('/todo').then(function (todosFromServer) {
+	findAll: function (day, callback) {
+		$.get('/todo?day=' + day).then(function (todosFromServer) {
 			callback(todosFromServer);
 		});
 	}
@@ -28,8 +28,8 @@ var TodoPlanRepository = {
 	remove: function (todo) {
 		$.post('/todoPlan/remove?id=' + todo._id);
 	},
-	findAll: function (callback) {
-		$.get('/todoPlan').then(function (todosFromServer) {
+	findAll: function (day, callback) {
+		$.get('/todoPlan?day=' + day).then(function (todosFromServer) {
 			callback(todosFromServer);
 		});
 	}
@@ -41,23 +41,11 @@ var dayNameRepository = {
 			cb(dayName);
 		});
 	},
-	findDate: function (callback) {
-		$.get('/dayName/find-date').then(function (dateFromServer) {
+	findDate: function (day, callback) {
+		$.get('/dayName/find-date?day=' + day).then(function (dateFromServer) {
 			callback(dateFromServer);
 		});
 	}
 
 };
 
-var SelectHowRepository = {
-	updateSelect: function (data,cb){
-	$.post("selectHow/update-select/", data).then(function(selectHow){
-		cb(dayName);
-	});
-	},
-	findSelect: function (callback) {
-		$.get('/selectHow/find-select').then(function (selectFromServer) {
-			callback(dateFromServer);
-		});
-	}
-}
