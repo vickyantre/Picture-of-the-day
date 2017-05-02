@@ -48,3 +48,16 @@ var dayNameRepository = {
 	}
 
 };
+
+var SelectHowRepository = {
+	updateSelect: function (data,cb){
+	$.post("selectHow/update-select/", data).then(function(selectHow){
+		cb(dayName);
+	});
+	},
+	findSelect: function (callback) {
+		$.get('/selectHow/find-select').then(function (selectFromServer) {
+			callback(dateFromServer);
+		});
+	}
+}
