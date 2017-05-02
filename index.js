@@ -7,12 +7,13 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/pod');
 
-var TodoModel = mongoose.model('Todo', { 
+var TodoModel = mongoose.model('Todo', {
+    day: Date,
     text: String, 
     day: Date,
     isDone: Boolean 
 });
-var TodoModelPlan = mongoose.model('TodoPlan', { text: String, isDone: Boolean });
+var TodoModelPlan = mongoose.model('TodoPlan', { day: Date, text: String, isDone: Boolean });
 var DayNameModel = mongoose.model('dayName', { text: String, day: Date, attitude: String});
 
 // var kitty = new Cat({ name: 'Alisa' });
@@ -48,7 +49,12 @@ app.post('/todo/remove', function(req, res) {
 });
 
 app.post('/todo/create', function(req, res) {
-    var newTodoModel = new TodoModel(req.body);
+  var now = new Date();
+  now.setHours(3, 0, 0, 0);
+  var data = req.body;
+  data.day = now;
+
+    var newTodoModel = new TodoModel(data);
     newTodoModel.save(function (err) {
        if (err) {
         console.log(err);
@@ -66,10 +72,17 @@ app.get('/todoPlan', function(req, res) {
     });
 });
 
-app.post('/todoPlan/create', function (req,res){
-    var newTodoModelPlan = new TodoModelPlan(req.body);
+app.post('/todoPlan/create', function (req,res) {
+
+  var now = new Date();
+  now.setHours(3, 0, 0, 0);
+
+  var data = req.body;
+  data.day = now;
+
+    var newTodoModelPlan = new TodoModelPlan(data);
     newTodoModelPlan.save(function (err) {
-       if (err) {
+      if (err) {
         console.log(err);
       } else {
         res.send(newTodoModelPlan);
