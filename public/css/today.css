@@ -121,11 +121,13 @@ select:not(:-internal-list-box){
     .desktop-only {
         display:none !important;
     }
-}
-
-@media (max-width: 991px) {
     .for-mobile {
         display:block !important;
         width: 100%;
     }
+    .day-name{
+    	font-size: 15px;
+    }
+}
+
 

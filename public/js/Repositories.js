@@ -34,3 +34,17 @@ var TodoPlanRepository = {
 		});
 	}
 };
+
+var dayNameRepository = {
+	updateDate: function (data,cb){
+		$.post("dayName/update-date/", data).then(function(dayName){
+			cb(dayName);
+		});
+	},
+	findDate: function (callback) {
+		$.get('/dayName/find-date').then(function (dateFromServer) {
+			callback(dateFromServer);
+		});
+	}
+
+};

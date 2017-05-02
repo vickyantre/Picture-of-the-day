@@ -1,0 +1,18 @@
+.navbar-brand{
+	font-family: 'Parisienne', cursive;
+	font-size: 30px;
+	padding: 15px;
+}
+ul li{
+  font-size: 17px;
+}
+.footer {
+    position: fixed; /* Фиксированное положение */
+    bottom: 0;
+    width: 84%;
+    padding: 10px; /* Поля вокруг текста */
+  	color:  #0f7864;
+  	text-align: center;
+  	font-weight: bold;
+  	border-top: 2px solid #18bc9c;
+}

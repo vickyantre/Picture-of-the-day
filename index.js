@@ -13,6 +13,7 @@ var TodoModel = mongoose.model('Todo', {
     isDone: Boolean 
 });
 var TodoModelPlan = mongoose.model('TodoPlan', { text: String, isDone: Boolean });
+var DayNameModel = mongoose.model('dayName', { text: String, day: Date});
 
 // var kitty = new Cat({ name: 'Alisa' });
 // kitty.save(function (err) {
@@ -91,4 +92,32 @@ app.post('/todoPlan/remove', function(req, res) {
 
 app.listen(3000, function() {
     console.log("Server is working on http://localhost:3000/");
+});
+
+app.post('/dayName/update-date', function (req,res){
+  var now = new Date();
+  now.setHours(3, 0, 0, 0);
+
+  DayNameModel.findOne({ 'day': now }, function (err, record) {
+    if (record) {
+      record.text = req.body.text;     
+    } else {
+      record = new DayNameModel({
+        day: now,
+        text: req.body.text,
+      });
+    }
+     record.save(function () {
+        res.send(record);
+      });
+  });
+});
+
+app.get('/dayName/find-date', function (req,res){
+  var now = new Date();
+  now.setHours(3, 0, 0, 0);
+
+  DayNameModel.findOne({ 'day': now }, function (err, record) {
+    res.send(record);
+  });
 });
