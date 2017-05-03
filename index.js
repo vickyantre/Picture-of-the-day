@@ -1,6 +1,10 @@
 var express = require("express");
 var app = express();
 
+var multer = require("multer");
+const fs = require('fs');
+const mkdirp = require('mkdirp');
+
 var path = require('path');
 var bodyParser = require('body-parser');
 
@@ -141,4 +145,38 @@ app.get('/dayName/find-date', function (req,res){
   DayNameModel.findOne({ 'day': now }, function (err, record) {
     res.send(record);
   });
+});
+
+
+// Збереження картинок
+var storage = multer.diskStorage({
+    destination: function(req, file, cb) {   
+        // check if user dir exists
+        // check if date dir exists   
+        var day = [req.day.getFullYear(), req.day.getMonth() + 1, req.day.getDate()].join('-');
+        var destination = './public/photos/' + day;
+        mkdirp(destination, function() {
+          cb(null, destination);
+        });        
+    },
+    filename: function(req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
+
+var upload = multer({ storage: storage });
+
+
+// app.use('/', express.static(path.join(__dirname, 'public')));
+// app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+app.post('/upload', function(req, res, next) {
+    var day = new Date(req.query.day);
+    day.setHours(3, 0, 0, 0);
+
+    req.day = day;
+
+    next();
+}, upload.single('file'), function (req, res) {
+    res.send();
 });

@@ -46,6 +46,31 @@ $("#selectHow").change(function(e){
     });
 });
 
+$('#uploadForm').submit(function(e) {
+    e.preventDefault();
+
+    var data = new FormData(jQuery('#uploadForm')[0]);
+
+    $.ajax({
+        url: "/upload?day=" + currentDate,
+        method: "POST",
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: data
+    }).then(function(res) {  
+        // $("#placeForPictures").html("");
+        // renderPicture();
+    });
+
+    return false;
+});
+
+
+$('#file').change(function () {
+	$('#uploadForm').submit();
+});
+
 
 
 
