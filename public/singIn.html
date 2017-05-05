@@ -32,6 +32,14 @@
                     <input type="submit" id="register_button" class="register_button" value="Registration" />
                 </div>
             </form>
+
+          <div class="alert alert-dismissible alert-danger" style="display: none;" >
+            Passwords do not match.
+          </div>
+
+          <div class="alert alert-dismissible alert-danger" style="display: none;" >
+            This e-mail is already registered.
+          </div>
       </div>
       <div class="tab-pane" id="forgotPassword">
             <form action="#">
@@ -62,9 +70,14 @@
                     <input type="submit" id="login_button" class="login_button" value="Sing in" />
                 </div>
             </form>
+
+          <div class="alert alert-dismissible alert-danger" style="display: none;" >
+            Wrong login or password.
+          </div>
       </div>
     </div>
   </div>
+
   <div class="modal-footer">
     <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">Close</button>
   </div>

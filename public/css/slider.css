@@ -8,43 +8,62 @@
     display: inline-block;
     margin-top: -10px;
  }
-.carousel-inner .item img {
-	max-height: 640px;
+ .item img {
+	max-height: 500px;
 	width: auto;
-	display: inline-block;
+	margin: 0 auto;
 }
-.item{
-	text-align: center;
-}
-.modal-slider{
-	margin: 50px auto;
-}
+
 .delete-photo, .main-photo{
 	color: black;
 }
 .delete-photo{
 	position: absolute;
-	left: 81%;
+	left: 82%;
 	bottom: 15px;
 	font-size: 35px;
+  z-index: 1;
 }
 .main-photo{
 	position: absolute;
-	left: 81%;
+	left: 82%;
 	bottom: 65px;
 	font-size: 30px;
+  z-index: 1;
 }
-div a.main-photo:hover::after { 
+div a.main-photo:hover::before { 
   content: "Set as main photo?"; 
-  font-size: 20px;
-  margin-left: 20px;
+  font-size: 11px;
+  margin-right: 40px;
 }
 .main-photo:hover, .delete-photo:hover{
 	color: black;
 }
-.close{
+.modal .close{
 	z-index: 1;
 	position: absolute;
 	top: 10px;
-	left: 97%;
+	left: 95%;
+  color: red;
+  font-size: 30px;
 }
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+

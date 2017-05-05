@@ -4,7 +4,6 @@ var app = express();
 var multer = require("multer");
 const fs = require('fs');
 const mkdirp = require('mkdirp');
-
 var path = require('path');
 var bodyParser = require('body-parser');
 
@@ -150,9 +149,7 @@ app.get('/dayName/find-date', function (req,res){
 
 // Збереження картинок
 var storage = multer.diskStorage({
-    destination: function(req, file, cb) {   
-        // check if user dir exists
-        // check if date dir exists   
+    destination: function(req, file, cb) {  
         var day = [req.day.getFullYear(), req.day.getMonth() + 1, req.day.getDate()].join('-');
         var destination = './public/photos/' + day;
         mkdirp(destination, function() {
@@ -166,10 +163,6 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage });
 
-
-// app.use('/', express.static(path.join(__dirname, 'public')));
-// app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
 app.post('/upload', function(req, res, next) {
     var day = new Date(req.query.day);
     day.setHours(3, 0, 0, 0);
@@ -179,4 +172,45 @@ app.post('/upload', function(req, res, next) {
     next();
 }, upload.single('file'), function (req, res) {
     res.send();
+});
+
+// відображення фото в слайдері
+app.post('/pictures', function(req, res) {
+    var day = new Date(req.query.day);
+    day.setHours(3, 0, 0, 0);
+
+    var dayFormatted = [day.getFullYear(), day.getMonth() + 1, day.getDate()].join('-');
+
+    var images;
+    fs.readdir(path.join(__dirname, './public/photos/' + dayFormatted + "/"), function(err, files) {
+      if (err) {
+        res.send([]);
+      } else {
+        images = files.map(function(file) {
+                return './photos/' + dayFormatted + "/" + file;
+            });
+
+            res.send(images);
+          }
+        });
+    
+});
+
+app.post('/photo/remove-photo', function(req, res) {
+
+    var day = new Date(req.body.day);
+    day.setHours(3, 0, 0, 0);
+
+    var dayFormatted = [day.getFullYear(), day.getMonth() + 1, day.getDate()].join('-');
+    var file = req.body.image;
+
+    var pathToFile = './public/photos/' + dayFormatted + "/" + path.parse(file).base;
+    fs.unlink(pathToFile, function (err) {
+      if (err) {
+        console.log(err);
+      }
+
+      res.send();
+    });
+  
 });

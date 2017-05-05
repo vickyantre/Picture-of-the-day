@@ -60,7 +60,7 @@ $('#uploadForm').submit(function(e) {
         data: data
     }).then(function(res) {  
         // $("#placeForPictures").html("");
-        // renderPicture();
+        renderPicture();
     });
 
     return false;

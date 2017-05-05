@@ -6,6 +6,37 @@
 ul li{
   font-size: 17px;
 }
+.best-day{
+  color: white;
+  background-color: #18bc9c;
+}
+.great-day {
+  color: white;
+  background-color: #1cdbb5;
+
+}
+.normal-day{
+  color: black;
+  background-color: lightgrey;
+}
+.auful-day{
+  color: white;
+  background-color: #ffcb78;
+}
+.explenation{
+  position: fixed;
+  bottom: 70px;
+  left: 150px;
+}
+.explenation div{
+  font-size: 18px;
+}
+.explenation div span{
+  padding: 0 11px;
+  border: 1px solid black;
+  border-radius: 50%;
+  margin-right: 10px;
+}
 .footer {
     position: fixed; /* Фиксированное положение */
     bottom: 0;
