@@ -32,7 +32,16 @@ function renderPicture(){
                 }, function () {
                     renderPicture();
                 });
-            });          
+            }); 
+            $picture.find(".main-photo").click(function(e) {
+                PhotoRepository.setMainPhoto({
+                    image: image,
+                    day: currentDate
+                }, function (res) {
+                    $('#main-photo').attr('src', res.mainPhoto + "?" + Math.random());
+                });
+            }); 
+
         });
     });
 }

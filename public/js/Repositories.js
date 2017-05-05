@@ -49,9 +49,14 @@ var dayNameRepository = {
 
 };
 
-var PhotoRepository ={
+var PhotoRepository = {
 	removePhoto: function (data, callback){
 		$.post('/photo/remove-photo', data).then(function(photoFromServer){
+			callback(photoFromServer);
+		});
+	},
+	setMainPhoto: function(data, callback){
+		$.post("/photo/setMain", data).then(function(photoFromServer){
 			callback(photoFromServer);
 		});
 	}

@@ -4,6 +4,7 @@ var app = express();
 var multer = require("multer");
 const fs = require('fs');
 const mkdirp = require('mkdirp');
+const sharp = require('sharp');
 var path = require('path');
 var bodyParser = require('body-parser');
 
@@ -138,11 +139,19 @@ app.post('/dayName/update-date', function (req,res){
 });
 
 app.get('/dayName/find-date', function (req,res){
-  var now = new Date(req.query.day);
-  now.setHours(3, 0, 0, 0);
+  var day = new Date(req.query.day);
+  day.setHours(3, 0, 0, 0);
 
-  DayNameModel.findOne({ 'day': now }, function (err, record) {
-    res.send(record);
+  DayNameModel.findOne({ 'day': day }, function (err, record) {
+    var data = {};
+    if (record) {
+      data = record.toJSON();
+    }
+
+    var dayFormatted = [day.getFullYear(), day.getMonth() + 1, day.getDate()].join('-');
+    data.mainPhoto = 'photos/' + dayFormatted + "/mainPhoto.jpg";
+
+    res.send(data);
   });
 });
 
@@ -186,7 +195,15 @@ app.post('/pictures', function(req, res) {
       if (err) {
         res.send([]);
       } else {
-        images = files.map(function(file) {
+        images = files.filter(function (file) {
+          if (file == "mainPhoto.jpg"){
+            return false;
+          } else{
+            console.log(file);
+            return true;     
+          }     
+        })
+        .map(function(file) {
                 return './photos/' + dayFormatted + "/" + file;
             });
 
@@ -196,6 +213,7 @@ app.post('/pictures', function(req, res) {
     
 });
 
+// Видалення фото 
 app.post('/photo/remove-photo', function(req, res) {
 
     var day = new Date(req.body.day);
@@ -214,3 +232,28 @@ app.post('/photo/remove-photo', function(req, res) {
     });
   
 });
+
+// Головне фото
+app.post('/photo/setMain', function(req, res) {
+
+    var day = new Date(req.body.day);
+    day.setHours(3, 0, 0, 0);
+
+    var dayFormatted = [day.getFullYear(), day.getMonth() + 1, day.getDate()].join('-');
+    var file = req.body.image;
+
+    var pathToFile = './public/photos/' + dayFormatted + "/" + path.parse(file).base;
+    var mainFile = './public/photos/' + dayFormatted + "/mainPhoto.jpg";
+
+    sharp(pathToFile)
+      .resize(340, 510)
+      .toFile(mainFile, function(err) {
+        if (err) {
+          console.log(err);
+        }
+        res.send({
+          mainPhoto: 'photos/' + dayFormatted + "/mainPhoto.jpg"
+        });
+      });
+});
+

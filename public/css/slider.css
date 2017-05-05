@@ -19,14 +19,14 @@
 }
 .delete-photo{
 	position: absolute;
-	left: 82%;
+	left: 80%;
 	bottom: 15px;
 	font-size: 35px;
   z-index: 1;
 }
 .main-photo{
 	position: absolute;
-	left: 82%;
+	left: 80%;
 	bottom: 65px;
 	font-size: 30px;
   z-index: 1;
