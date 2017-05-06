@@ -14,6 +14,7 @@ window.onhashchange = function () {
 	renderCurrentDay();
 	renderTodosP();
 	renderTodos();
+    renderPicture();
 };
 
 currentDate.setHours(3, 0, 0, 0);
@@ -32,7 +33,6 @@ function renderCurrentDay() {
 		inputDayName.value = dateFromServer.text|| '';
 		date.innerText = currentDate.getDate() + "." + (currentDate.getMonth()+1)  + "." + currentDate.getFullYear();
 		select.value = dateFromServer.attitude || "best";
-        $('#main-photo').attr('src', dateFromServer.mainPhoto);
 	});
 }
 

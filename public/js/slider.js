@@ -1,14 +1,18 @@
-function renderPicture(){
+function renderPicture() {
     $.ajax({
         url: "/pictures?day=" + currentDate,
         method: "POST",
-    }).then(function(images){
-        if (images.length == 0){
-            $( "#showGallery" ).hide();
-            $('#modal-slider').modal('hide');
-        } else{
+    }).then(function(res) {
+        var images = res.images;
+        var mainPhoto= res.mainPhoto || '/images/photo.jpg';
+        $('#main-photo').attr('src', mainPhoto + "?" + Math.random());
 
-            $( "#showGallery" ).show();
+        if (images.length == 0) {
+            $("#showGallery").hide();
+            $('#modal-slider').modal('hide');
+        } else {
+
+            $("#showGallery").show();
         }
 
         $("#placeForPictures").html('');
@@ -23,26 +27,26 @@ function renderPicture(){
             $picture.find("[data-picture]").attr("src", image);
             $picture.find("[data-href]").attr("href", image);
 
-            $("#placeForPictures").append($picture);  
+            $("#placeForPictures").append($picture);
 
             $picture.find(".delete-photo").click(function(e) {
                 PhotoRepository.removePhoto({
                     image: image,
                     day: currentDate
-                }, function () {
+                }, function() {
                     renderPicture();
                 });
-            }); 
+            });
             $picture.find(".main-photo").click(function(e) {
                 PhotoRepository.setMainPhoto({
                     image: image,
                     day: currentDate
-                }, function (res) {
-                    $('#main-photo').attr('src', res.mainPhoto + "?" + Math.random());
+                }, function(res) {
+                    renderPicture();
                 });
-            }); 
+            });
 
         });
     });
 }
-    renderPicture();
+renderPicture();
