@@ -238,13 +238,13 @@ app.post('/upload', loadUser, function(req, res, next) {
     var day = req.day;
 
     var dayFormatted = [day.getFullYear(), day.getMonth() + 1, day.getDate()].join('-');
-    fs.readdir(path.join(__dirname, './public/photos/' + dayFormatted + "/"), function(err, files) {
+    fs.readdir(path.join(__dirname, './public/photos/' + req.currentUser._id + "/" + dayFormatted + "/"), function(err, files) {
         if (files.length == 1) {
             var dayFormatted = [day.getFullYear(), day.getMonth() + 1, day.getDate()].join('-');
             var file = files[0];
 
-            var pathToFile = './public/photos/' + dayFormatted + "/" + path.parse(file).base;
-            var mainFile = './public/photos/' + dayFormatted + "/mainPhoto.jpg";
+            var pathToFile = './public/photos/' + req.currentUser._id + "/"  + dayFormatted + "/" + path.parse(file).base;
+            var mainFile = './public/photos/' + req.currentUser._id + "/"  + dayFormatted + "/mainPhoto.jpg";
 
             sharp(pathToFile)
                 .resize(340, 510)
@@ -252,7 +252,7 @@ app.post('/upload', loadUser, function(req, res, next) {
                     if (err) {
                         console.log(err);
                     }
-                    var mainPhoto = '/photos/' + dayFormatted + "/mainPhoto.jpg";
+                    var mainPhoto = '/photos/' + req.currentUser._id + "/"  + dayFormatted + "/mainPhoto.jpg";
                     res.send({ mainPhoto: mainPhoto });
                 });
         } else {
@@ -269,15 +269,15 @@ app.post('/pictures', loadUser, function(req, res) {
     var dayFormatted = [day.getFullYear(), day.getMonth() + 1, day.getDate()].join('-');
 
     var images;
-    fs.readdir(path.join(__dirname, './public/photos/' + dayFormatted + "/"), function(err, files) {
+    fs.readdir(path.join(__dirname, './public/photos/' + req.currentUser._id + "/"  + dayFormatted + "/"), function(err, files) {
         var mainPhoto;
         var images = [];
         if (!err) {
             files.forEach(function(file) {
                 if (file === 'mainPhoto.jpg') {
-                    mainPhoto = './photos/' + dayFormatted + "/" + file;
+                    mainPhoto = './photos/' + req.currentUser._id + "/"  + dayFormatted + "/" + file;
                 } else {
-                    images.push('./photos/' + dayFormatted + "/" + file);
+                    images.push('./photos/' + req.currentUser._id + "/"  + dayFormatted + "/" + file);
                 }
             });
         }
@@ -298,7 +298,7 @@ app.post('/photo/remove-photo', loadUser, function(req, res) {
     var dayFormatted = [day.getFullYear(), day.getMonth() + 1, day.getDate()].join('-');
     var file = req.body.image;
 
-    var pathToFile = './public/photos/' + dayFormatted + "/" + path.parse(file).base;
+    var pathToFile = './public/photos/' + req.currentUser._id + "/"  + dayFormatted + "/" + path.parse(file).base;
     fs.unlink(pathToFile, function(err) {
         if (err) {
             console.log(err);
@@ -318,8 +318,8 @@ app.post('/photo/setMain', loadUser, function(req, res) {
     var dayFormatted = [day.getFullYear(), day.getMonth() + 1, day.getDate()].join('-');
     var file = req.body.image;
 
-    var pathToFile = './public/photos/' + dayFormatted + "/" + path.parse(file).base;
-    var mainFile = './public/photos/' + dayFormatted + "/mainPhoto.jpg";
+    var pathToFile = './public/photos/' + req.currentUser._id + "/"  + dayFormatted + "/" + path.parse(file).base;
+    var mainFile = './public/photos/' + req.currentUser._id + "/"  + dayFormatted + "/mainPhoto.jpg";
 
     sharp(pathToFile)
         .resize(340, 510)
@@ -328,7 +328,7 @@ app.post('/photo/setMain', loadUser, function(req, res) {
                 console.log(err);
             }
 
-            var mainPhoto = '/photos/' + dayFormatted + "/mainPhoto.jpg";
+            var mainPhoto = '/photos/' + req.currentUser._id + "/"  + dayFormatted + "/mainPhoto.jpg";
             res.send({ mainPhoto: mainPhoto });
         });
 });
