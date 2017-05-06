@@ -62,15 +62,6 @@ UserSchema.virtual('password')
     });
 var UserModel = mongoose.model('User', UserSchema);
 
-// var kitty = new Cat({ name: 'Alisa' });
-// kitty.save(function (err) {
-//   if (err) {
-//     console.log(err);
-//   } else {
-//     console.log('meow');
-//   }
-// });
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({ secret: 'as**21LLD blue tabby point t', store: new RedisStore() }));
@@ -214,8 +205,7 @@ app.get('/dayName/find-date', loadUser, function(req, res) {
 // Збереження картинок
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        var day = [req.day.getFullYear(), req.day.getMonth() + 1, req.day.getDate()].join('-');
-        var destination = './public/photos/' + req.currentUser._id + "/" + day;
+        var destination = './public/' + getPhotoDir(req.currentUser, req.day);
         mkdirp(destination, function() {
             cb(null, destination);
         });
@@ -229,7 +219,7 @@ var upload = multer({ storage: storage });
 
 app.post('/upload', loadUser, function(req, res, next) {
     var day = new Date(req.query.day);
-    day.setHours(3, 0, 0, 0);
+    
 
     req.day = day;
 
@@ -237,24 +227,15 @@ app.post('/upload', loadUser, function(req, res, next) {
 }, upload.single('file'), function(req, res) {
     var day = req.day;
 
-    var dayFormatted = [day.getFullYear(), day.getMonth() + 1, day.getDate()].join('-');
-    fs.readdir(path.join(__dirname, './public/photos/' + req.currentUser._id + "/" + dayFormatted + "/"), function(err, files) {
+    var photoDir = getPhotoDir(req.currentUser, day);
+    fs.readdir(path.join(__dirname, './public/' + photoDir + "/"), function(err, files) {
         if (files.length == 1) {
-            var dayFormatted = [day.getFullYear(), day.getMonth() + 1, day.getDate()].join('-');
             var file = files[0];
 
-            var pathToFile = './public/photos/' + req.currentUser._id + "/"  + dayFormatted + "/" + path.parse(file).base;
-            var mainFile = './public/photos/' + req.currentUser._id + "/"  + dayFormatted + "/mainPhoto.jpg";
-
-            sharp(pathToFile)
-                .resize(340, 510)
-                .toFile(mainFile, function(err) {
-                    if (err) {
-                        console.log(err);
-                    }
-                    var mainPhoto = '/photos/' + req.currentUser._id + "/"  + dayFormatted + "/mainPhoto.jpg";
-                    res.send({ mainPhoto: mainPhoto });
-                });
+            var pathToFile = photoDir + "/" + path.parse(file).base;
+            setMainPhoto(pathToFile, function (mainPhoto) {
+                res.send({mainPhoto: mainPhoto});
+            });
         } else {
             res.send();
         }
@@ -264,20 +245,18 @@ app.post('/upload', loadUser, function(req, res, next) {
 // відображення фото в слайдері
 app.post('/pictures', loadUser, function(req, res) {
     var day = new Date(req.query.day);
-    day.setHours(3, 0, 0, 0);
-
-    var dayFormatted = [day.getFullYear(), day.getMonth() + 1, day.getDate()].join('-');
+    var photoDir = getPhotoDir(req.currentUser, day);
 
     var images;
-    fs.readdir(path.join(__dirname, './public/photos/' + req.currentUser._id + "/"  + dayFormatted + "/"), function(err, files) {
+    fs.readdir(path.join(__dirname, './public/' + photoDir + "/"), function(err, files) {
         var mainPhoto;
         var images = [];
         if (!err) {
             files.forEach(function(file) {
                 if (file === 'mainPhoto.jpg') {
-                    mainPhoto = './photos/' + req.currentUser._id + "/"  + dayFormatted + "/" + file;
+                    mainPhoto = '.' + photoDir + "/" + file;
                 } else {
-                    images.push('./photos/' + req.currentUser._id + "/"  + dayFormatted + "/" + file);
+                    images.push(photoDir + "/" + file);
                 }
             });
         }
@@ -293,12 +272,11 @@ app.post('/pictures', loadUser, function(req, res) {
 app.post('/photo/remove-photo', loadUser, function(req, res) {
 
     var day = new Date(req.body.day);
-    day.setHours(3, 0, 0, 0);
-
-    var dayFormatted = [day.getFullYear(), day.getMonth() + 1, day.getDate()].join('-');
+    var photoDir = getPhotoDir(req.currentUser, day);
+    
     var file = req.body.image;
 
-    var pathToFile = './public/photos/' + req.currentUser._id + "/"  + dayFormatted + "/" + path.parse(file).base;
+    var pathToFile = './public/' + photoDir + "/" + path.parse(file).base;
     fs.unlink(pathToFile, function(err) {
         if (err) {
             console.log(err);
@@ -313,24 +291,16 @@ app.post('/photo/remove-photo', loadUser, function(req, res) {
 app.post('/photo/setMain', loadUser, function(req, res) {
 
     var day = new Date(req.body.day);
-    day.setHours(3, 0, 0, 0);
+    
 
-    var dayFormatted = [day.getFullYear(), day.getMonth() + 1, day.getDate()].join('-');
+    var photoDir = getPhotoDir(req.currentUser, day);
+
     var file = req.body.image;
 
-    var pathToFile = './public/photos/' + req.currentUser._id + "/"  + dayFormatted + "/" + path.parse(file).base;
-    var mainFile = './public/photos/' + req.currentUser._id + "/"  + dayFormatted + "/mainPhoto.jpg";
-
-    sharp(pathToFile)
-        .resize(340, 510)
-        .toFile(mainFile, function(err) {
-            if (err) {
-                console.log(err);
-            }
-
-            var mainPhoto = '/photos/' + req.currentUser._id + "/"  + dayFormatted + "/mainPhoto.jpg";
-            res.send({ mainPhoto: mainPhoto });
-        });
+    var pathToFile = photoDir + "/"  + path.parse(file).base;
+    setMainPhoto(pathToFile, function (mainPhoto) {
+        res.send({ mainPhoto: mainPhoto });        
+    });
 });
 
 app.post('/sessions/create', function(req, res) {
@@ -365,3 +335,25 @@ app.post('/users/create', function(req, res) {
         });
     });
 });
+
+
+function getPhotoDir(user, day) {
+    day.setHours(3, 0, 0, 0);
+
+    var dayFormatted = [day.getFullYear(), day.getMonth() + 1, day.getDate()].join('-');
+
+    return "/photos/" + user._id + "/"  + dayFormatted;
+}
+
+function setMainPhoto(pathToFile, cb) {    
+    var mainFile = path.dirname(pathToFile) + "/mainPhoto.jpg";
+
+    sharp('./public' + pathToFile)
+        .resize(340, 510)
+        .toFile('./public' + mainFile, function(err) {
+            if (err) {
+                console.log(err);
+            }
+            cb(mainFile);            
+        });
+}
