@@ -219,7 +219,7 @@ var upload = multer({ storage: storage });
 
 app.post('/upload', loadUser, function(req, res, next) {
     var day = new Date(req.query.day);
-    
+
 
     req.day = day;
 
@@ -227,19 +227,34 @@ app.post('/upload', loadUser, function(req, res, next) {
 }, upload.single('file'), function(req, res) {
     var day = req.day;
 
-    var photoDir = getPhotoDir(req.currentUser, day);
-    fs.readdir(path.join(__dirname, './public/' + photoDir + "/"), function(err, files) {
-        if (files.length == 1) {
-            var file = files[0];
+    var thumbPath = path.parse(req.file.path);
+    thumbPath.base = thumbPath.name + '_thumb.jpg';
 
-            var pathToFile = photoDir + "/" + path.parse(file).base;
-            setMainPhoto(pathToFile, function (mainPhoto) {
-                res.send({mainPhoto: mainPhoto});
+    sharp(req.file.path)
+        .resize(900, 900)
+        .max()
+        .toFile(path.format(thumbPath), function(err) {
+            if (err) {
+                console.log(err);
+            }
+            fs.unlink(req.file.path, function() {
+                var photoDir = getPhotoDir(req.currentUser, day);
+                fs.readdir(path.join(__dirname, './public/' + photoDir + "/"), function(err, files) {
+                    if (files.length == 1) {
+                        var file = files[0];
+
+                        var pathToFile = photoDir + "/" + path.parse(file).base;
+                        setMainPhoto(pathToFile, function(mainPhoto) {
+                            res.send({ mainPhoto: mainPhoto });
+                        });
+                    } else {
+                        res.send();
+                    }
+                });
             });
-        } else {
-            res.send();
-        }
-    });
+        });
+
+
 });
 
 // відображення фото в слайдері
@@ -273,7 +288,7 @@ app.post('/photo/remove-photo', loadUser, function(req, res) {
 
     var day = new Date(req.body.day);
     var photoDir = getPhotoDir(req.currentUser, day);
-    
+
     var file = req.body.image;
 
     var pathToFile = './public/' + photoDir + "/" + path.parse(file).base;
@@ -291,15 +306,15 @@ app.post('/photo/remove-photo', loadUser, function(req, res) {
 app.post('/photo/setMain', loadUser, function(req, res) {
 
     var day = new Date(req.body.day);
-    
+
 
     var photoDir = getPhotoDir(req.currentUser, day);
 
     var file = req.body.image;
 
-    var pathToFile = photoDir + "/"  + path.parse(file).base;
-    setMainPhoto(pathToFile, function (mainPhoto) {
-        res.send({ mainPhoto: mainPhoto });        
+    var pathToFile = photoDir + "/" + path.parse(file).base;
+    setMainPhoto(pathToFile, function(mainPhoto) {
+        res.send({ mainPhoto: mainPhoto });
     });
 });
 
@@ -342,10 +357,10 @@ function getPhotoDir(user, day) {
 
     var dayFormatted = [day.getFullYear(), day.getMonth() + 1, day.getDate()].join('-');
 
-    return "/photos/" + user._id + "/"  + dayFormatted;
+    return "/photos/" + user._id + "/" + dayFormatted;
 }
 
-function setMainPhoto(pathToFile, cb) {    
+function setMainPhoto(pathToFile, cb) {
     var mainFile = path.dirname(pathToFile) + "/mainPhoto.jpg";
 
     sharp('./public' + pathToFile)
@@ -354,6 +369,6 @@ function setMainPhoto(pathToFile, cb) {
             if (err) {
                 console.log(err);
             }
-            cb(mainFile);            
+            cb(mainFile);
         });
 }
