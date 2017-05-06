@@ -19,7 +19,10 @@
   "homepage": "https://github.com/vickyantre/Picture-of-the-day#readme",
   "dependencies": {
     "body-parser": "^1.17.1",
+    "connect-redis": "^3.3.0",
+    "cookie-parser": "^1.4.3",
     "express": "^4.15.2",
+    "express-session": "^1.15.2",
     "fs": "0.0.1-security",
     "mkdirp": "^0.5.1",
     "mongoose": "^4.9.5",

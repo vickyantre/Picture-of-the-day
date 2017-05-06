@@ -44,6 +44,11 @@ var dayNameRepository = {
 	findDate: function (day, callback) {
 		$.get('/dayName/find-date?day=' + day).then(function (dateFromServer) {
 			callback(dateFromServer);
+		}).fail(function (res) {
+			if (res.status === 403) {			
+				return location.href = '/lending.html';				
+			}
+			alert("Something went wrong! We'll fix it soon");
 		});
 	}
 

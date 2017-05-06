@@ -14,33 +14,38 @@
     </ul>
 
     <div class="tab-content">
+
+     <!-- Реєстрація -->
       <div class="tab-pane" id="register">
-            <form action="#">
+            <form action="#" id="registration-form">
                 <div class="row">
                     <label  class="col-md-4" for="login">Enter your login:</label>
-                    <input class="col-md-8" type="text" name="login" placeholder="Login" /><br/>
+                    <input class="col-md-8" type="email" name="login-registration" placeholder="Login" /><br/>
                 </div>
                 <div class="row">
                     <label class="col-md-4" for="password">Enter your password:</label>
-          <input class="col-md-8" type="password" name="password" placeholder="Password"><br/>
+          <input class="col-md-8" type="password" name="password-registration1" placeholder="Password"><br/>
                 </div>
                 <div class="row">
                     <label class="col-md-4" for="password_repeat">Repeat your password:</label>
-            <input class="col-md-8" type="password" name="password" placeholder="Password"><br/>
+            <input class="col-md-8" type="password" name="password-registration2" placeholder="Password"><br/>
                 </div>
                 <div class="row">
                     <input type="submit" id="register_button" class="register_button" value="Registration" />
                 </div>
             </form>
 
-          <div class="alert alert-dismissible alert-danger" style="display: none;" >
+          <div id="notMatchPass" class="alert alert-dismissible alert-danger display-none">
             Passwords do not match.
           </div>
 
-          <div class="alert alert-dismissible alert-danger" style="display: none;" >
+          <div id="email-exist" class="alert alert-dismissible alert-danger display-none">
             This e-mail is already registered.
           </div>
       </div>
+
+
+     <!-- Забутий пароль -->
       <div class="tab-pane" id="forgotPassword">
             <form action="#">
                 <h4 for="password">To send letter with password to your e -mail press button</h4>
@@ -53,15 +58,17 @@
                 </div>
             </form>
       </div>
+
+     <!-- Авторизація -->
       <div class="tab-pane active" id="profile">
-            <form action="#">
+            <form action="#" method="POST" id='login-form'>
             <div class="row">
                     <label class="col-md-4"  class="col-md-3" for="login">Enter your login:</label>
-                    <input class="col-md-8" type="text" name="login" placeholder="Login" /><br/>
+                    <input class="col-md-8" type="text" name="login-singin" placeholder="Login" /><br/>
                 </div>
                 <div class="row">
                     <label class="col-md-4" for="password">Enter your password:</label>
-					<input class="col-md-8" type="password" name="password" placeholder="Password"><br/>
+					<input class="col-md-8" type="password" name="password-singin" placeholder="Password"><br/>
                 </div>
                 <div class="remember-me">
                <input type="checkbox" id="remember-me" /><label for="remember-me">Remember me</label>
@@ -71,7 +78,7 @@
                 </div>
             </form>
 
-          <div class="alert alert-dismissible alert-danger" style="display: none;" >
+          <div class="alert alert-dismissible alert-danger display-none" id="alert-fale-singin"  >
             Wrong login or password.
           </div>
       </div>
@@ -81,3 +88,5 @@
   <div class="modal-footer">
     <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">Close</button>
   </div>
+
+<script type="text/javascript" src="./js/singin.js"></script>
