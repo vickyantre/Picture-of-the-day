@@ -192,6 +192,19 @@ app.post('/dayName/update-date', loadUser, function(req, res) {
     });
 });
 
+app.get('/dayName/find-by-month', loadUser, function(req, res) {
+    var startOfMonth = new Date(req.query.month);
+    startOfMonth.setDate(1);
+    var endOfMonth = new Date(startOfMonth.getFullYear(), startOfMonth.getMonth()+1, 1);
+
+    DayNameModel.find({ 'day': {$gte: startOfMonth, $lt: endOfMonth}, user_id: req.currentUser._id }, function(err, days) {
+        if (err) {
+            console.log(err);
+        }
+        res.send(days);
+    });
+});
+
 app.get('/dayName/find-date', loadUser, function(req, res) {
     var day = new Date(req.query.day);
     day.setHours(3, 0, 0, 0);

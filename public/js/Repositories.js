@@ -41,6 +41,11 @@ var dayNameRepository = {
 			cb(dayName);
 		});
 	},
+	findByMonth: function (month, cb) {
+		$.get('/dayName/find-by-month?month=' + month).then(function (days) {
+			cb(days);
+		});		
+	},
 	findDate: function (day, callback) {
 		$.get('/dayName/find-date?day=' + day).then(function (dateFromServer) {
 			callback(dateFromServer);

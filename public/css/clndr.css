@@ -267,21 +267,23 @@ ul li{
   bottom: 0; /* Левый нижний угол */
   padding: 10px; /* Поля вокруг текста */
 }
+table a:not(.btn), .table a:not(.btn) {
+  text-decoration: none;
+}
+.day-contents a{
+  color: black;
+}
 .best-day{
-  color: white;
   background-color: #18bc9c;
 }
 .great-day {
-  color: white;
-  background-color: #1cdbb5;
+  background-color: #28e8c2;
 
 }
 .normal-day{
-  color: black;
   background-color: lightgrey;
 }
-.auful-day{
-  color: white;
+.awful-day{
   background-color: #ffcb78;
 }
 .explenation{

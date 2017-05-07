@@ -1,129 +1,150 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
     <title>Calendar</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-  <link href="https://fonts.googleapis.com/css?family=Parisienne" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="./css/clndr.css">
+    <link href="https://fonts.googleapis.com/css?family=Parisienne" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/clndr.css">
 </head>
-<body>
- <div class="container">
 
-<nav class="navbar navbar-inverse">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="./today.html">MomentsOfToday</a>
-            </div>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="./today.html">MomentsOfToday</a>
+                </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="./today.html">Today</a></li>
-                        <li><a  class="active" href="./calendar.html">Calendar</a></li>
+                        <li><a class="active" href="./calendar.html">Calendar</a></li>
                         <li><a href="./statistics.html">Statistics</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                      <li><a><b>Sing out</b></a></li>
+                        <li><a><b>Sing out</b></a></li>
                     </ul>
+                </div>
             </div>
-          </div>
         </nav>
-<div id="calendar" class="cal1"></div>
-
-      <div class="row explenation">
-        <div><span class="best-day"></span>The best day</div>
-        <div><span class="great-day"></span>Great day</div>
-        <div><span class="normal-day"></span>Normal day</div>
-        <div><span class="auful-day"></span>Awful day</div>
-      </div>
-      <div class="footer">
+        <div id="calendar" class="cal1"></div>
+        <div class="row explenation">
+            <div><span class="best-day"></span>The best day</div>
+            <div><span class="great-day"></span>Great day</div>
+            <div><span class="normal-day"></span>Normal day</div>
+            <div><span class="awful-day"></span>Awful day</div>
+        </div>
+        <div class="footer">
             <p>2017. Created by Victoria Yakovenko. E-mail: vicky-antre@gmail.com</p>
-      </div>
-</div>
-
-<script type="text/html" id="calendar-template">
-
-
-<div class='clndr-controls'>
-    <div class='clndr-control-button'>
-    	<p class='clndr-previous-button'><i class="fa fa-chevron-left" aria-hidden="true"></i></p>
+        </div>
     </div>
-    <span>
-    	<select class="month">
-    	<% for(var i = 1; i <= 12; i++) { %>
-    		<option value="<%= moment(i, 'M').format('MMMM') %>" <% if (moment(i, 'M').format('MMMM') == month) { %>selected<% } %>>
-    			<%= moment(i, 'M').format('MMMM') %>
-    		</option>
-    	<% } %>
-    	</select>
-    	<select class="year">
-    	<% for(var i = 2017; i <= 2117; i++) { %>
-    		<option value="<%= i %>" <% if (i == year) { %>selected<% } %>>
-    			<%= i %>
-    		</option>
-    	<% } %>
-    	</select>
-    </span>
-    
-    <div class='clndr-control-button rightalign'><p class='clndr-next-button'><i class="fa fa-chevron-right" aria-hidden="true"></i></p></div>
-    </div>
-  		<table class='clndr-table' border='0' cellspacing='0' cellpadding='0'>
-    <thead>
-    <tr class='header-days'>
-    <% for(var i = 0; i < daysOfTheWeek.length; i++) { %>
-      <td class='header-day'><%= daysOfTheWeek[i] %></td>
-    <% } %>
-    </tr>
-    </thead>
-    <tbody>
-    <% for(var i = 0; i < numberOfRows; i++){ %>
-      <tr>
-      <% for(var j = 0; j < 7; j++){ %>
-      <% var d = j + i * 7; %>
-      <td class='<%= days[d].classes %>'><div class='day-contents'><%= days[d].day %>
-      </div></td>
+    <script type="text/html" id="calendar-template">
+        <div class='clndr-controls'>
+            <div class='clndr-control-button'>
+                <p class='clndr-previous-button'><i class="fa fa-chevron-left" aria-hidden="true"></i></p>
+            </div>
+            <span>
+      <select class="month">
+      <% for(var i = 1; i <= 12; i++) { %>
+        <option value="<%= moment(i, 'M').format('MMMM') %>" <% if (moment(i, 'M').format('MMMM') == month) { %>selected<% } %>>
+          <%= moment(i, 'M').format('MMMM') %>
+        </option>
       <% } %>
-      </tr>
-    <% } %>
-    </tbody>
-  </table>
-</script>
+      </select>
+      <select class="year">
+      <% for(var i = 2017; i <= 2117; i++) { %>
+        <option value="<%= i %>" <% if (i == year) { %>selected<% } %>>
+          <%= i %>
+        </option>
+      <% } %>
+      </select>
+    </span>
+            <div class='clndr-control-button rightalign'>
+                <p class='clndr-next-button'><i class="fa fa-chevron-right" aria-hidden="true"></i></p>
+            </div>
+        </div>
+        <table class='clndr-table' border='0' cellspacing='0' cellpadding='0'>
+            <thead>
+                <tr class='header-days'>
+                    <% for(var i = 0; i < daysOfTheWeek.length; i++) { %>
+                        <td class='header-day'>
+                            <%= daysOfTheWeek[i] %>
+                        </td>
+                        <% } %>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(var i = 0; i < numberOfRows; i++){ %>
+                    <tr>
+                        <% for(var j = 0; j < 7; j++){ %>
+                            <% var d = j + i * 7; %>
+                                <td class='<%= days[d].classes %>'>
+                                    <a href="/today.html#<%= days[d].date.format('YYYY-MM-DD') %>">
+                                        <div class='day-contents'>
+                                            <%= days[d].day %>
+                                    </a>
+                                    </div>
+                                </td>
+                                <% } %>
+                    </tr>
+                    <% } %>
+            </tbody>
+        </table>
+    </script>
+    <script type="text/javascript" src="./js/jquery-3.2.0.min.js"></script>
+    <script type="text/javascript" src="./js/underscore-min.js"></script>
+    <script type="text/javascript" src="./js/moment-2.2.1.js"></script>
+    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/clndr.js"></script>
+    <script type="text/javascript" src="./js/Repositories.js"></script>
+    <script type="text/javascript">
+    $('#calendar').clndr({
+        template: $('#calendar-template').text(),
 
 
-<script type="text/javascript" src="./js/jquery-3.2.0.min.js"></script>
-<script type="text/javascript" src="./js/underscore-min.js"></script>
-<script type="text/javascript" src="./js/moment-2.2.1.js"></script>
-<script type="text/javascript" src="./js/bootstrap.min.js"></script>
-<script type="text/javascript" src="./js/clndr.js"></script>
-<script type="text/javascript">
-	$('#calendar').clndr({
-		template: $('#calendar-template').text(),
-    dayClasses: function (extraClasses) {
-      var classes = ['best-day', 'great-day', 'normal-day', 'auful-day'];
-      return extraClasses + " " + _.sample(classes);
-    },
-		doneRendering: function() {
-			var _this = this;
-			var $year = $(this.element).find('select.year');
-			var $month = $(this.element).find('select.month');
-			$year.change(function () {
-				_this.setYear($year.val());
-			});
+        clickEvents: {
+            onMonthChange: function(day) {
+              renderDays(day);                
+            },
+            onYearChange: function (day) {
+              renderDays(day);                 
+            }
 
-			$month.change(function () {
-				_this.setMonth($month.val());
-			});
+        },
 
-		}
-	});
-</script>
+        doneRendering: function() {
+            var _this = this;
+            var $year = $(this.element).find('select.year');
+            var $month = $(this.element).find('select.month');
+            $year.change(function() {
+                _this.setYear($year.val(), {withCallbacks: true});
+            });
+
+            $month.change(function() {
+                _this.setMonth($month.val(), {withCallbacks: true});
+            }); }
+
+    });
+
+    function renderDays(month) {
+      dayNameRepository.findByMonth(moment(month).format('YYYY-MM-DD'), function(days) {
+                    days.forEach(function(day) {
+                        $('.calendar-day-' + moment(day.day).format('YYYY-MM-DD')).addClass(day.attitude + '-day');
+                    });
+                });
+    }
+
+    renderDays(new Date());       
+    </script>
 </body>
+
 </html>
