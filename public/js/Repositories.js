@@ -46,6 +46,11 @@ var dayNameRepository = {
 			cb(days);
 		});		
 	},
+	findBestDays: function(cb){
+		$.get("/dayName/find-best-days").then(function(days){
+			cb(days);
+		});
+	},
 	findDate: function (day, callback) {
 		$.get('/dayName/find-date?day=' + day).then(function (dateFromServer) {
 			callback(dateFromServer);
@@ -71,3 +76,4 @@ var PhotoRepository = {
 		});
 	}
 };
+

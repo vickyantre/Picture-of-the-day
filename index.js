@@ -13,6 +13,7 @@ var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 
 var mongoose = require('mongoose');
+var random = require('mongoose-simple-random');
 mongoose.connect('mongodb://localhost/pod');
 
 var TodoModel = mongoose.model('Todo', {
@@ -28,12 +29,17 @@ var TodoModelPlan = mongoose.model('TodoPlan', {
     user_id: mongoose.Schema.Types.ObjectId,
     isDone: Boolean
 });
-var DayNameModel = mongoose.model('dayName', {
+
+
+var DayNameSchema = new mongoose.Schema({
     text: String,
     day: Date,
     user_id: mongoose.Schema.Types.ObjectId,
     attitude: String
 });
+DayNameSchema.plugin(random);
+
+var DayNameModel = mongoose.model('dayName', DayNameSchema);
 
 var UserSchema = new mongoose.Schema({
     email: String,
@@ -195,14 +201,26 @@ app.post('/dayName/update-date', loadUser, function(req, res) {
 app.get('/dayName/find-by-month', loadUser, function(req, res) {
     var startOfMonth = new Date(req.query.month);
     startOfMonth.setDate(1);
-    var endOfMonth = new Date(startOfMonth.getFullYear(), startOfMonth.getMonth()+1, 1);
+    var endOfMonth = new Date(startOfMonth.getFullYear(), startOfMonth.getMonth() + 1, 1);
 
-    DayNameModel.find({ 'day': {$gte: startOfMonth, $lt: endOfMonth}, user_id: req.currentUser._id }, function(err, days) {
+    DayNameModel.find({ 'day': { $gte: startOfMonth, $lt: endOfMonth }, user_id: req.currentUser._id }, function(err, days) {
         if (err) {
             console.log(err);
         }
         res.send(days);
     });
+});
+
+app.get('/dayName/find-best-days', loadUser, function(req, res) {
+
+    DayNameModel.findRandom({ 'attitude': 'best', user_id: req.currentUser._id }, {}, {limit: 5}, function (err, days) {
+        if (err) {
+                console.log(err);
+            }
+            res.send(days);
+        });
+      
+
 });
 
 app.get('/dayName/find-date', loadUser, function(req, res) {
