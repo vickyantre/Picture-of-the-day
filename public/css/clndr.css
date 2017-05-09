@@ -89,7 +89,7 @@
 }
 
 .cal1 .clndr .clndr-table tr .day.today {
-      color: #5482AB!important;
+      color: green !important;
     text-decoration: none;
     border: 1px solid #5482AB;
  }
@@ -259,7 +259,6 @@ ul li{
 .footer{
   color:  #0f7864;
   text-align: center;
-  padding: 15px;
   font-weight: bold;
   border-top: 2px solid #18bc9c;
   width: 84%;
@@ -286,10 +285,13 @@ table a:not(.btn), .table a:not(.btn) {
 .awful-day{
   background-color: #ffcb78;
 }
+.today a{
+  color: #5482AB;
+}
 .explenation{
   position: fixed;
   bottom: 70px;
-  left: 150px;
+  left: 12%;
 }
 .explenation div{
   font-size: 18px;
@@ -310,6 +312,17 @@ table a:not(.btn), .table a:not(.btn) {
     position: relative;
     left: 15px;
     top: 10px;
+  }
+  .explenation{
+  position: static;
+  margin: 15px 20px;
+  }
+  .footer{
+    position: static;
+    width: 100%;
+  }
+  .desktop-only{
+    display: none;
   }
 }
 .navbar-brand{

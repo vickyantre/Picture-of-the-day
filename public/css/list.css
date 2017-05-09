@@ -1,14 +1,22 @@
-
-ul li.todo-done span{
-	color: grey;
-	text-decoration: line-through;
-}
-ul li span{
-	margin-left: 10px;
+ul li.todo-done span {
+    color: grey;
+    text-decoration: line-through;
 }
 
-.checkbox-round 
-/*input[type='checkbox']:before*/{
+ul li span {
+    margin-left: 10px;
+}
+
+ul li {
+    display: block;
+    padding: 10px 0;
+    font-size: 17px;
+}
+
+.checkbox-round
+/*input[type='checkbox']:before*/
+
+{
     width: 20px;
     height: 20px;
     background-color: white;
@@ -20,19 +28,22 @@ ul li span{
     outline: none;
     cursor: pointer;
     content: " ";
- }
- .row2 input{
- 	border: none;
- 	padding: 6px;
- 	font-size: 18px;
- }
+}
 
- input[type='checkbox']:before {
+.row2 input {
+    border: none;
+    padding: 6px;
+    font-size: 18px;
+}
+
+input[type='checkbox']:before {
     content: "✓";
     position: relative;
     left: 3px;
     opacity: 0;
 }
+
+
 /*
 .checkbox-round:checked*/
 
@@ -44,57 +55,66 @@ input[type='checkbox']:checked:before {
     opacity: 1;
 }
 
-.list-name{
-	padding: 20px;
-	font-size: 15px;
-	border: none;
-	border-radius: 0;
+.list-name {
+    padding: 20px;
+    font-size: 15px;
+    border: none;
+    border-radius: 0;
 }
 
-.down-line{
-	border-bottom: 1px solid lightgrey;
-	margin-bottom: 20px;
+.down-line {
+    border-bottom: 1px solid lightgrey;
+    margin-bottom: 20px;
 }
 
-
-li button{
-	border:none;
-	color: white;
-	background: none;
-	font-weight: bold;
-	font-size: 15px;
-	padding: 0 !important;
-}
-li:hover button{
-	color: #cc9a9a;
+li button {
+    border: none;
+    color: white;
+    background: none;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 0 !important;
 }
 
-li button:hover{
-	color: #c25353;
+li:hover button {
+    color: #cc9a9a;
 }
-.edit{
+
+li button:hover {
+    color: #c25353;
+}
+
+.edit {
     margin-right: 12px;
 }
-li:hover .edit{
+
+li:hover .edit {
     color: grey;
 }
-li .edit:hover{
+
+li .edit:hover {
     color: black;
 }
 
-
-input[type="checkbox"]:focus, input:focus, textarea:focus, select:focus, .show-gallery:focus, li button:focus {
+input[type="checkbox"]:focus,
+input:focus,
+textarea:focus,
+select:focus,
+.show-gallery:focus,
+li button:focus {
     outline: 0;
     outline-offset: 0;
 }
 
-.plans{
-	display: block;
-}
-ul li{
-	display: block;
-	height: 40px;
-	font-size: 17px;
+.plans {
+    display: block;
 }
 
-
+@media (max-width: 991px) {
+    li button {
+        color: #cc9a9a;
+    }
+    .edit {
+        color: grey;
+    }
+}

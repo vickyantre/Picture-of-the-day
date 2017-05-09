@@ -51,6 +51,11 @@ var dayNameRepository = {
 			cb(days);
 		});
 	},
+	findStatistic: function(cb){
+		$.get("/dayName/statistic").then(function(days){
+			cb(days);
+		});
+	},
 	findDate: function (day, callback) {
 		$.get('/dayName/find-date?day=' + day).then(function (dateFromServer) {
 			callback(dateFromServer);

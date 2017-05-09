@@ -232,6 +232,28 @@ app.get('/dayName/find-date', loadUser, function(req, res) {
     });
 });
 
+app.get('/dayName/statistic', loadUser, function(req, res) {
+    var match = {user_id: req.currentUser._id };
+
+    DayNameModel.aggregate([
+        {
+            $match: match
+        },
+        {
+            $group: {
+                _id: '$attitude',
+                count: {$sum: 1}
+            }
+        }
+    ], function (err, result) {
+        if (err) {
+           console.error(err);
+       }
+        
+            res.send(result);
+    });
+});
+
 
 // Збереження картинок
 var storage = multer.diskStorage({

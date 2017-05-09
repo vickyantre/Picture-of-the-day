@@ -1,53 +1,98 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Statistics</title>
-  <link href="https://fonts.googleapis.com/css?family=Parisienne" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="./css/statistics.css">
-<body>
-	<div class="container">
-		<nav class="navbar navbar-inverse">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="./today.html">MomentsOfToday</a>
+    <title>Statistics</title>
+    <link href="https://fonts.googleapis.com/css?family=Parisienne" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/statistics.css">
+
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="./today.html">MomentsOfToday</a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="./today.html">Today</a></li>
+                            <li><a class="active" href="./calendar.html">Calendar</a></li>
+                            <li><a href="./statistics.html">Statistics</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a><b>Sing out</b></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div id="piechart" style="width: 900px; height: 500px;"></div>
+            <div class="period-buttons">
+                <a href="">For all time</a>
+                <b>|</b>
+                <a href="">For last 30 days</a>
             </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a href="./today.html">Today</a></li>
-                        <li><a  class="active" href="./calendar.html">Calendar</a></li>
-                        <li><a href="./statistics.html">Statistics</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                      <li><a><b>Sing out</b></a></li>
-                    </ul>
-            	</div>
-          </div>
-        </nav>
-        <div class="row explenation">
-          <div><span class="best-day"></span>The best day</div>
-          <div><span class="great-day"></span>Great day</div>
-          <div><span class="normal-day"></span>Normal day</div>
-          <div><span class="auful-day"></span>Awful day</div>
+            <div class="footer">
+                <p>2017. Created by Victoria Yakovenko. E-mail: vicky-antre@gmail.com</p>
+            </div>
         </div>
+        <script type="text/javascript" src="./js/jquery-3.2.0.min.js"></script>
+        <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="./js/Repositories.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
 
-        <div class="footer">
-            <p>2017. Created by Victoria Yakovenko. E-mail: vicky-antre@gmail.com</p>
-      	</div>
+        $('#allTime').on('shown.bs.tab', function() {
+            console.log('wooo');
+            google.charts.setOnLoadCallback(drawChart);
 
-    </div>
+            function drawChart() {
 
-    <script type="text/javascript" src="./js/jquery-3.2.0.min.js"></script>
-    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
-</body>
+                dayNameRepository.findStatistic(function(res) {
+
+                    var data = [
+                        ['Attitude', 'Days']
+                    ];
+
+                    var resByDay = {};
+
+                    res.forEach(function(item) {
+                        resByDay[item._id] = item.count;
+                    });
+                    data.push(['best days', resByDay.best || 0]);
+                    data.push(['great days', resByDay.great || 0]);
+                    data.push(['normal days', resByDay.normal || 0]);
+                    data.push(['awful days', resByDay.awful || 0]);
+
+
+                    var _data = google.visualization.arrayToDataTable(data);
+
+                    var options = {
+                        title: 'My Days',
+                        colors: ['#18bc9c', '#28e8c2', 'lightgrey', '#ffcb78']
+                    };
+
+                    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+                    chart.draw(_data, options);
+                });
+            }
+
+        });
+        </script>
+    </body>
+
 </html>

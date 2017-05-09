@@ -1,49 +1,60 @@
-.navbar-brand{
-	font-family: 'Parisienne', cursive;
-	font-size: 30px;
-	padding: 15px;
+.navbar-brand {
+    font-family: 'Parisienne', cursive;
+    font-size: 30px;
+    padding: 15px;
 }
-ul li{
-  font-size: 17px;
-}
-.best-day{
-  color: white;
-  background-color: #18bc9c;
-}
-.great-day {
-  color: white;
-  background-color: #1cdbb5;
 
+ul li {
+    font-size: 17px;
 }
-.normal-day{
-  color: black;
-  background-color: lightgrey;
+
+.best-day {
+    color: white;
+    background-color: #18bc9c;
 }
-.auful-day{
-  color: white;
-  background-color: #ffcb78;
+
+.great-day {
+    color: white;
+    background-color: #1cdbb5;
 }
-.explenation{
-  position: fixed;
-  bottom: 70px;
-  left: 150px;
+
+.normal-day {
+    color: black;
+    background-color: lightgrey;
 }
-.explenation div{
-  font-size: 18px;
+
+.auful-day {
+    color: white;
+    background-color: #ffcb78;
 }
-.explenation div span{
-  padding: 0 11px;
-  border: 1px solid black;
-  border-radius: 50%;
-  margin-right: 10px;
-}
+
 .footer {
-    position: fixed; /* Фиксированное положение */
+    position: fixed;
+    /* Фиксированное положение */
     bottom: 0;
     width: 84%;
-    padding: 10px; /* Поля вокруг текста */
-  	color:  #0f7864;
-  	text-align: center;
-  	font-weight: bold;
-  	border-top: 2px solid #18bc9c;
+    padding: 10px;
+    /* Поля вокруг текста */
+    color: #0f7864;
+    text-align: center;
+    margin: 0 auto;
+    font-weight: bold;
+    border-top: 2px solid #18bc9c;
+}
+
+.period-buttons {
+    text-align: center;
+    font-size: 18px;
+    bottom: 70px;
+}
+
+@media (max-width: 991px) {
+    .period-buttons  {
+        position: static;
+        margin: 15px 20px;
+    }
+    .footer {
+        position: static;
+        width: 100%;
+    }
 }

@@ -1,34 +1,41 @@
-
-.vert{
-    height:100% // или сколько нужно в пикселях или процентах
+.vert {
+    height: 100% // или сколько нужно в пикселях или процентах
     width: 1px;
-    border:none;
+    border: none;
     margin-top: 20px;
 }
-.col-md-2 h3, .list-to-remember h4, .list h4{
-	color: #0f7864;
+
+.col-md-2 h3,
+.list-to-remember h4,
+.list h4 {
+    color: #0f7864;
 }
-.image{
-	width: 350px;
-	height: 520px;
-	margin-right: 10px;
-	margin-bottom: 10px;
-	float: left;
-	border-color: #0f7864;
+
+.image {
+    width: 350px;
+    height: 520px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    float: left;
+    border-color: #0f7864;
 }
+
 img {
-	width: 100%;
+    width: 100%;
+    height: 100%;
 }
-.panel .panel-heading .panel-title{
-	color: white;
+
+.panel .panel-heading .panel-title {
+    color: white;
 }
+
 .inputfile {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
 }
+
 .inputfile + label {
     font-size: 30px;
     color: #0f7864;
@@ -39,102 +46,124 @@ img {
     padding: 0px 13px;
     border-radius: 50%;
     border: 1px solid #0f7864;
-	position: relative;
-	top: 530px;
-	left: 20px;
-}
-label:hover{
-	cursor: pointer;
-}
-.row2 input{
-	width: 100%;
-}
-#uploadForm, #showGallery, form{
-	display: inline-block;
+    position: relative;
+    top: 530px;
+    left: 20px;
 }
 
-.show-gallery{
-	font-size: 25px;
+label:hover {
+    cursor: pointer;
+}
+
+.row2 input {
+    width: 100%;
+}
+
+#uploadForm,
+#showGallery,
+form {
+    display: inline-block;
+    z-index: 1;
+}
+
+.show-gallery {
+    font-size: 25px;
     color: #0f7864;
     background-color: transparent;
     display: inline-block;
     width: 45px;
     height: 45px;
     border-radius: 50%;
-	position: relative;
-	top: 470px;
-	right: 27px;
-	border: 1px solid #0f7864;
-}
-a.show-gallery:hover, a.show-gallery:focus{
-	text-decoration: none;
-	color: #0f7864;
-}
-.show-gallery i{
-	position: relative;
-	top: 3px;
-	left: 9px;
+    position: relative;
+    top: 470px;
+    right: 27px;
+    border: 1px solid #0f7864;
 }
 
-.form-group h3{
-	display: inline-block;
-}
-.day-name{
-	display: inline-block;
-	width: calc(100% - 150px);
-	font-size: 20px;
-	margin-left: 15px
-}
-.choose-how{
-	margin-left: 15px;
-	padding: 5px;
-	background-color: white;
-	border-radius: 4px;
-	border: 1px solid #18bc9c;
+a.show-gallery:hover,
+a.show-gallery:focus {
+    text-decoration: none;
+    color: #0f7864;
 }
 
-select:not(:-internal-list-box){
+.show-gallery i {
+    position: relative;
+    top: 3px;
+    left: 9px;
+}
+
+.form-group h3 {
+    display: inline-block;
+}
+
+.day-name {
+    display: inline-block;
+    width: calc(100% - 150px);
+    font-size: 20px;
+    margin-left: 15px
+}
+
+.choose-how {
+    margin-left: 15px;
+    padding: 5px;
+    background-color: white;
+    border-radius: 4px;
+    border: 1px solid #18bc9c;
+}
+
+select:not(:-internal-list-box) {
     outline: 0;
     outline-offset: 0;
 }
-.list-to-remember{
-	display: inline-block;
-	width: calc(100% - 380px);
-}
-.row .row{
-	padding: 10px;
-}
-.footer{
-	color:  #0f7864;
-	text-align: center;
-	padding: 15px;
-	margin-top: 30px;
-	font-weight: bold;
-	border-top: 2px solid #18bc9c;
-}
-.navbar-brand{
-	font-family: 'Parisienne', cursive;
-	font-size: 30px;
-	padding: 15px;
+
+.list-to-remember {
+    display: inline-block;
+    width: calc(100% - 380px);
 }
 
+.row .row {
+    padding: 10px;
+}
 
+.footer {
+    color: #0f7864;
+    text-align: center;
+    padding: 15px;
+    margin-top: 30px;
+    font-weight: bold;
+    border-top: 2px solid #18bc9c;
+}
 
-@media (max-width: 991px) {
+.navbar-brand {
+    font-family: 'Parisienne', cursive;
+    font-size: 30px;
+    padding: 15px;
+}
+
+@media (max-width: 500px) {
     .mobile-only {
-        display:block !important;
-    }
- 
-    .desktop-only {
-        display:none !important;
+        display: block !important;
     }
     .for-mobile {
-        display:block !important;
+        display: block !important;
         width: 100%;
     }
-    .day-name{
-    	font-size: 15px;
+    .day-name {
+        font-size: 15px;
+    }
+    .inputfile + label {
+        position: absolute;
+        top: 580px;
+        left: 75%;
+    }
+    .show-gallery {
+        position: absolute;
+        top: 520px;
+        left: 75%;
     }
 }
-
-
+@media (max-width: 991px){
+	    .desktop-only {
+        display: none !important;
+    }
+}
