@@ -137,7 +137,6 @@ select:not(:-internal-list-box) {
 .navbar-brand {
     font-family: 'Parisienne', cursive;
     font-size: 30px;
-    padding: 15px;
 }
 
 @media (max-width: 500px) {
@@ -162,8 +161,15 @@ select:not(:-internal-list-box) {
         left: 75%;
     }
 }
-@media (max-width: 991px){
-	    .desktop-only {
+
+@media (max-width: 991px) {
+    .desktop-only {
         display: none !important;
+    }
+    .container {
+        padding: 0;
+    }
+    .row-for-mobile{
+        padding: 0 10px;
     }
 }

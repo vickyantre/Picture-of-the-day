@@ -1,17 +1,17 @@
-ul li.todo-done span {
+ ul li.todo-done span{
     color: grey;
     text-decoration: line-through;
 }
+.list-to-remember ul li, .list ul li{
+    display: block;
+    padding: 10px 0;
+    font-size: 17px; 
+}
 
-ul li span {
+.list-to-remember ul li span, .list ul li span{
     margin-left: 10px;
 }
 
-ul li {
-    display: block;
-    padding: 10px 0;
-    font-size: 17px;
-}
 
 .checkbox-round
 /*input[type='checkbox']:before*/

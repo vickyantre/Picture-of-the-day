@@ -31,16 +31,26 @@
                             <li><a href="./statistics.html">Statistics</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a><b>Sing out</b></a></li>
+                            <li><a id="singOut"><b>Sing out</b></a></li>
                         </ul>
                     </div>
                 </div>
             </nav>
-            <div id="piechart" style="width: 900px; height: 500px;"></div>
-            <div class="period-buttons">
-                <a href="">For all time</a>
-                <b>|</b>
-                <a href="">For last 30 days</a>
+            <div class="charts row">
+            <div class="col-md-6">
+                <h4 class="text-center">Last 30 days</h4>
+                <div id="thirty-days-chart"></div>
+            </div>
+            <div class="col-md-6">
+                <h4 class="text-center">All period</h4>
+                <div id="piechart"></div>
+            </div>
+            </div>
+            <div class="row explenation">
+                <div><span class="best-day"></span>The best day</div>
+                <div><span class="great-day"></span>Great day</div>
+                <div><span class="normal-day"></span>Normal day</div>
+                <div><span class="awful-day"></span>Awful day</div>
             </div>
             <div class="footer">
                 <p>2017. Created by Victoria Yakovenko. E-mail: vicky-antre@gmail.com</p>
@@ -49,50 +59,9 @@
         <script type="text/javascript" src="./js/jquery-3.2.0.min.js"></script>
         <script type="text/javascript" src="./js/bootstrap.min.js"></script>
         <script type="text/javascript" src="./js/Repositories.js"></script>
+        <script type="text/javascript" src="./js/singOut.js"></script>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script type="text/javascript">
-        google.charts.load('current', {
-            'packages': ['corechart']
-        });
-
-        $('#allTime').on('shown.bs.tab', function() {
-            console.log('wooo');
-            google.charts.setOnLoadCallback(drawChart);
-
-            function drawChart() {
-
-                dayNameRepository.findStatistic(function(res) {
-
-                    var data = [
-                        ['Attitude', 'Days']
-                    ];
-
-                    var resByDay = {};
-
-                    res.forEach(function(item) {
-                        resByDay[item._id] = item.count;
-                    });
-                    data.push(['best days', resByDay.best || 0]);
-                    data.push(['great days', resByDay.great || 0]);
-                    data.push(['normal days', resByDay.normal || 0]);
-                    data.push(['awful days', resByDay.awful || 0]);
-
-
-                    var _data = google.visualization.arrayToDataTable(data);
-
-                    var options = {
-                        title: 'My Days',
-                        colors: ['#18bc9c', '#28e8c2', 'lightgrey', '#ffcb78']
-                    };
-
-                    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-                    chart.draw(_data, options);
-                });
-            }
-
-        });
-        </script>
+        <script type="text/javascript" src="./js/statistics.js"></script>
     </body>
 
 </html>

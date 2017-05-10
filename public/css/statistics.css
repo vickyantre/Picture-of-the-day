@@ -8,33 +8,57 @@ ul li {
     font-size: 17px;
 }
 
+
+#piechart,
+#thirty-days-chart {
+    width: 500px;
+    height: 500px;
+}
+
+.charts {
+    margin: 0 auto;
+    width: 90%;
+}
+
+.charts h4 {
+  padding-bottom: 0;
+  color: #0f7864;
+  margin: 0;
+}
+
+.explenation {
+    margin: 25px 20px;
+}
+
+.explenation div {
+    font-size: 18px;
+}
+
+.explenation div span {
+    padding: 0 11px;
+    border: 1px solid black;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
 .best-day {
-    color: white;
     background-color: #18bc9c;
 }
 
 .great-day {
-    color: white;
-    background-color: #1cdbb5;
+    background-color: #28e8c2;
 }
 
 .normal-day {
-    color: black;
     background-color: lightgrey;
 }
 
-.auful-day {
-    color: white;
+.awful-day {
     background-color: #ffcb78;
 }
 
 .footer {
-    position: fixed;
-    /* Фиксированное положение */
-    bottom: 0;
-    width: 84%;
-    padding: 10px;
-    /* Поля вокруг текста */
+    padding: 20px 0;
     color: #0f7864;
     text-align: center;
     margin: 0 auto;
@@ -42,19 +66,20 @@ ul li {
     border-top: 2px solid #18bc9c;
 }
 
-.period-buttons {
-    text-align: center;
-    font-size: 18px;
-    bottom: 70px;
-}
-
 @media (max-width: 991px) {
-    .period-buttons  {
-        position: static;
-        margin: 15px 20px;
-    }
     .footer {
         position: static;
         width: 100%;
+    }
+    #piechart, #thirty-days-chart{
+        width: 300px;
+        height: 300px;
+    }
+    .container {
+        padding: 0;
+    }
+    .explenation {
+        position: static;
+        margin: 15px 20px;
     }
 }

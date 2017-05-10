@@ -254,6 +254,37 @@ app.get('/dayName/statistic', loadUser, function(req, res) {
     });
 });
 
+app.get('/dayName/30-day-statistic', loadUser, function(req, res) {
+    var startDate = new Date();
+    startDate.setHours(3, 0, 0, 0);
+    startDate.setDate(startDate.getDate() - 30);
+
+    var match = {
+        user_id: req.currentUser._id,
+        day: {
+            "$gte": startDate,
+        }
+    };
+
+    DayNameModel.aggregate([
+        {
+            $match: match
+        },
+        {
+            $group: {
+                _id: '$attitude',
+                count: {$sum: 1}
+            }
+        }
+    ], function (err, result) {
+        if (err) {
+           console.error(err);
+       }
+        
+            res.send(result);
+    });
+});
+
 
 // Збереження картинок
 var storage = multer.diskStorage({
@@ -385,6 +416,11 @@ app.post('/sessions/create', function(req, res) {
         }
 
     });
+});
+
+app.post('/sessions/destroy', function(req, res) {
+   delete req.session.user_id;
+   res.send(); 
 });
 
 app.post('/users/create', function(req, res) {
