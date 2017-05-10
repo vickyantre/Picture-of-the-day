@@ -68,10 +68,12 @@ UserSchema.virtual('password')
     });
 var UserModel = mongoose.model('User', UserSchema);
 
+const secret = 'as**21LLD blue tabby point t';
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({ secret: 'as**21LLD blue tabby point t', store: new RedisStore() }));
-app.use(cookieParser());
+app.use(session({ secret: secret, store: new RedisStore() }));
+app.use(cookieParser(secret));
 
 app.use('/', express.static(path.join(__dirname, 'public')));
 
@@ -80,8 +82,9 @@ app.get('/about', function(req, res) {
 });
 
 function loadUser(req, res, next) {
-    if (req.session.user_id) {
-        UserModel.findById({ _id: req.session.user_id }, function(err, user) {
+    var userId = req.session.user_id || req.signedCookies.remember_me;
+    if (userId) {
+        UserModel.findById({ _id: userId }, function(err, user) {
             if (user) {
                 req.currentUser = user;
                 next();
@@ -407,6 +410,13 @@ app.post('/sessions/create', function(req, res) {
         if (user) {
             if (user.authenticate(req.body.password)) {
                 req.session.user_id = user._id;
+
+                if (req.body.rememberMe == 'true') {
+                var cookiesExpiresAt = new Date();
+                cookiesExpiresAt.setYear(cookiesExpiresAt.getFullYear() + 10);
+                console.log(cookiesExpiresAt);
+                res.cookie('remember_me', user._id.toString(), {signed: true, expires: cookiesExpiresAt});
+                }
                 res.send({ success: true });
             } else {
                 res.send({ success: false });
@@ -420,6 +430,7 @@ app.post('/sessions/create', function(req, res) {
 
 app.post('/sessions/destroy', function(req, res) {
    delete req.session.user_id;
+   res.clearCookie('remember_me');
    res.send(); 
 });
 

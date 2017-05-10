@@ -3,13 +3,15 @@ $("#login-form").submit(function(e) {
     var login = $("[name='login-singin']").val();
     var password = $("[name='password-singin']").val();
     $("#alert-fale-singin").addClass("display-none");
+    var rememberMe = $("#remember-me").prop( "checked" );
 
     $.ajax({
         url: "/sessions/create",
         method: "POST",
         data: {
             "email": login,
-            "password": password
+            "password": password,
+            "rememberMe": rememberMe
         },
     }).then(function(res) {
         if (res.success) {
