@@ -22,10 +22,18 @@ $("#login-form").submit(function(e) {
     });
 });
 
+function isRegistrationFormValid() {
+    return $("#notMatchPass").hasClass("display-none");
+}
+
 $("#registration-form").submit(function(e) {
-    $("#notMatchPass").addClass("display-none");
-    $("#email-exist").addClass("display-none");
     e.preventDefault();
+    if (!isRegistrationFormValid()) {
+        return;
+    }
+
+    $("#notMatchPass").addClass("display-none");
+    $("#email-exist").addClass("display-none");    
     var login = $("[name='login-registration']").val();
     var password = $("[name='password-registration2']").val();
     $("#alert-fale-singin").addClass("display-none");
