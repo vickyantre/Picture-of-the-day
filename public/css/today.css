@@ -79,6 +79,9 @@ form {
     right: 27px;
     border: 1px solid #0f7864;
 }
+.display-none{
+    display: none;
+}
 
 a.show-gallery:hover,
 a.show-gallery:focus {

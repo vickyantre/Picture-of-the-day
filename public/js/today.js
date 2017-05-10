@@ -47,6 +47,17 @@ $("#selectHow").change(function(e) {
 $('#uploadForm').submit(function(e) {
     e.preventDefault();
 
+    var photos = $('#carousel-example-generic .item').length;
+
+    if (photos >= 10) {
+        $("#moreThat10").removeClass("display-none");
+        setTimeout(function() {
+            $("#moreThat10").addClass("display-none");
+        }, 5000);
+        return;
+
+    }
+
     var data = new FormData(jQuery('#uploadForm')[0]);
 
     $.ajax({
@@ -71,12 +82,12 @@ $('#file').change(function() {
 
 function renderBestDays() {
     dayNameRepository.findBestDays(function(days) {
-            days.forEach(function(day) {
+        days.forEach(function(day) {
             var bestDay = $("#BestDaysTemplate > a").clone();
             var currentDate = new Date(day.day);
 
             bestDay.find(".panel-title").text(currentDate.getDate() + "." + (currentDate.getMonth() + 1) + "." + currentDate.getFullYear());
-            bestDay.find(".panel-body").text( day.text);
+            bestDay.find(".panel-body").text(day.text);
             bestDay.attr("href", "today.html#" + currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1) + "-" + currentDate.getDate());
 
             $("#placeForBestDays").append(bestDay);
@@ -85,8 +96,3 @@ function renderBestDays() {
 }
 
 renderBestDays();
-
-
-
-
-
