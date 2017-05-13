@@ -2,4 +2,4 @@
 progect for work
 author Victoria Yakovenko
 
-(c) 2017
+(c) 2017 Victoria Yakovenko
