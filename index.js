@@ -10,7 +10,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
-var RedisStore = require('connect-redis')(session);
+const MongoStore = require('connect-mongo')(session);
 
 var mongoose = require('mongoose');
 var random = require('mongoose-simple-random');
@@ -72,7 +72,7 @@ const secret = 'as**21LLD blue tabby point t';
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({ secret: secret, store: new RedisStore() }));
+app.use(session({ secret: secret, store: new MongoStore({ mongooseConnection: mongoose.connection }) }));
 app.use(cookieParser(secret));
 
 app.use('/', express.static(path.join(__dirname, 'public')));
