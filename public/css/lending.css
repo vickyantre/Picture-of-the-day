@@ -1,103 +1,156 @@
-.navbar-brand{
-	font-family: 'Parisienne', cursive;
-	font-size: 30px;
-	padding: 15px;
+.navbar-brand {
+    font-family: 'Parisienne', cursive;
+    font-size: 30px;
+    padding: 15px;
 }
-.navbar{
-	background:  #0f7864;
-	margin: 0;
-	padding: 0;
-	border-radius: 0;
+
+.navbar {
+    background: #0f7864;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
 }
-.quote{
-	background-color: #18bc9c;
-	padding: 70px;
-	color: white;
+
+.quote {
+    background-color: #18bc9c;
+    padding: 70px;
+    color: white;
 }
-.quote h3{
-	font-family: 'Parisienne', cursive;
-	font-size: 50px;
-	text-align: center;
+
+.quote h3 {
+    font-family: 'Parisienne', cursive;
+    font-size: 50px;
+    text-align: center;
 }
-.quote p{
-	font-size: 25px;
-	text-align: right;
+
+.quote p {
+    font-size: 25px;
+    text-align: right;
 }
-.about{
-	color: #0f7864;
-	padding: 20px;
+
+.about {
+    color: #0f7864;
+    padding: 20px;
 }
-.about h2, .advanteges h2{
-	text-align: center;
+
+.about h2,
+.advanteges h2 {
+    text-align: center;
 }
-.about div{
-	font-size: 20px;
+
+.about div {
+    font-size: 20px;
 }
-.about .round{
-	width: 70px;
-	height: 70px;
-	border-radius: 50%;
-	background-color: #18bc9c;
+
+.about .round {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: #18bc9c;
 }
-.about .row{
-	padding: 15px 25px;
+
+.about .row {
+    padding: 15px 25px;
 }
-.about .row i{
-	color: white;
-	font-size: 40px;
-	position: relative;
-	top: 15px;
+
+.about .row i {
+    color: white;
+    font-size: 40px;
+    position: relative;
+    top: 15px;
 }
-.advanteges{
-	background-color: #18bc9c;
-	padding: 30px;
-	color: white;
+
+.advanteges {
+    background-color: #18bc9c;
+    padding: 30px;
+    color: white;
 }
-.advanteges ol { margin: 20px;
-	padding: 20px;
-	font-size: 20px;
+
+.advanteges ol {
+    margin: 20px;
+    padding: 20px;
+    font-size: 20px;
 }
-.advanteges .row{
-	width: 90%;
-	margin: 30px 0;
-	text-align: center;
-	font-size: 18px;
+
+.advanteges .row {
+    width: 90%;
+    margin: 30px 0;
+    text-align: center;
+    font-size: 18px;
 }
-.advanteges .row .col-md-4 .img-rounded{
-	width: 250px;
-	margin: 0 auto;
+
+.advanteges .row .col-md-4 .img-rounded {
+    width: 250px;
+    margin: 0 auto;
 }
-.advanteges .row .col-md-4 .img-rounded img{
-	width: 100%;
+
+.advanteges .row .col-md-4 .img-rounded img {
+    width: 100%;
 }
-.advanteges .row .col-md-4 div{
-	margin: 15px 0;
+
+.advanteges .row .col-md-4 div {
+    margin: 15px 0;
 }
-.footer{
-	color:  #0f7864;
-	text-align: center;
-	padding: 15px;
-	margin-top: 30px;
-	font-weight: bold;
+
+.footer {
+    color: #0f7864;
+    text-align: center;
+    padding: 15px;
+    margin-top: 30px;
+    font-weight: bold;
+}
+
+.fixed_button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    z-index: 999;
+    background-color: white;
+    color: #0f7864;
+    opacity: 0.5;
+    border-radius: 50%;
+    font-size: 30px;
+}
+
+i.fa-chevron-up {
+    position: relative;
+    left: 10px;
+}
+
+.fixed_button:hover {
+    cursor: pointer;
 }
 
 @media (max-width: 991px) {
-	.quote{
-		padding: 30px;
-	}
-	.quote h3{
-		font-size: 25px;
-	}
-	.quote p{
-		font-size: 18px;
-	}
-	.about h2, .advanteges h2{
-		font-size: 25px;
-	}
-	.about div{
-		font-size: 17px;
-	}
-	.desktop-only {
-        display:none !important;
+    .quote {
+        padding: 30px;
+    }
+    .quote h3 {
+        font-size: 25px;
+    }
+    .quote p {
+        font-size: 18px;
+    }
+    .about h2,
+    .advanteges h2 {
+        font-size: 25px;
+    }
+    .about div {
+        font-size: 17px;
+    }
+    .desktop-only {
+        display: none !important;
+    }
+    .fixed_button {
+        width: 30px;
+        height: 30px;
+        font-size: 20px;
+    }
+    i.fa-chevron-up {
+        position: relative;
+        left: 5px;
+        bottom: 2px;
     }
 }
